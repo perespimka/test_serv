@@ -1,0 +1,18 @@
+{% extends "blogs/base.html" %}
+{% load bootstrap4 %}
+
+{% block header %}
+  <h3>Регистрация:</h3>
+{% endblock header %}
+
+{% block content %}
+  <form method="POST" action="{% url 'register' %}" class="form">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+      <button name="submit" class="btn btn-primary">Зарегистрироваться</button>
+    {% endbuttons %}
+    
+    <input type="hidden" name="next" value="{% url 'index' %}">
+  </form>
+{% endblock content %}

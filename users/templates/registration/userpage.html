@@ -1,0 +1,22 @@
+{% extends "blogs/base.html" %}
+{% block header %}
+  <div>
+    <h3>Посты {{datuser.username}}:</h3>
+  </div>
+{% endblock header %}
+
+{% block content %}
+  {% for post in posts %}
+  <div class="post">
+      <h4><a href="{% url 'viewpost' post.id %}">{{post.title}}</a></h4>
+      <p>{{post.text|linebreaks}}</p>
+      <div class="date"><a href="{% url 'viewpost' post.id %}">Комментировать ({{post.commentary_set.count}})</a>
+        <span class="allignright">
+            Запись создана: {{post.date_added}}, <a href="{% url 'userpage' post.owner %}">автор: {{post.owner}}</a></div>
+        </span>
+      <hr>
+    </div>
+  {% empty %}
+      <p>В данный момент записей нет</p>
+  {% endfor %}
+{% endblock content %}

@@ -1,0 +1,18 @@
+{% extends "blogs/base.html" %}
+{% load bootstrap4 %}
+
+{% block header %}
+  <div>
+    <h3>Новая запись:</h3>
+  </div>
+{% endblock header %}
+
+{% block content %}
+  <form action="{% url 'new_post' %}" method="POST" class="form" enctype='multipart/form-data'>
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+      <button name="submit" class="btn btn-primary">Сохранить</button>
+    {% endbuttons %}  
+  </form>
+{% endblock content %}

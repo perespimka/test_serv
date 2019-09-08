@@ -1,0 +1,52 @@
+h4 a {
+    color: #FCA205;
+
+}
+.page-header {
+    background-color: #ff9400;
+    margin-top: 0;
+    padding: 20px 20px 20px 40px;
+    width: 100%;
+}
+
+.menu a, .menutext {
+    padding: 0px 10px;
+}
+.menu {
+    padding: 0px 0px 20px 0px;
+}
+.post {
+    margin-bottom: 0px;
+    /*background: #f8f7f7;*/
+    padding: 0px 10px;
+    
+}
+.date {
+    font-size: small;
+    color: #828282;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+.page-header h1 {
+    color: #ffffff;
+
+}
+.allignright {
+    float: right;
+}
+/*.comment-link {
+    margin-top: 0px;
+}
+*/
+/*
+.comment-header {
+    background-color: #ff9400;
+    width: 170px;
+}
+*/
+.comment-header h4{
+    color: #000000;
+}
+.form {
+    width: 50%;
+}

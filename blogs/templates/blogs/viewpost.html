@@ -1,0 +1,41 @@
+{% extends "blogs/base.html" %}
+{% load bootstrap4 %}
+{% block header %}
+  <div>
+    <h3><a href="{% url 'viewpost' post.id %}">{{post.title}}:</a></h3>
+  </div>
+{% endblock header %}
+
+{% block content %}
+  <div class="viewpost">
+    <p>
+      {% if usercheck %}
+        <div class="date">Запись создана: {{post.date_added}}, <a href="{% url 'userpage' user.username %}">автор: {{post.owner}}</a>, <a href="{% url 'edit_post' post.id %}"">Редактировать</a></div>
+      {% else %}
+      <div class="date">Запись создана: {{post.date_added}}, <a href="{% url 'userpage' user.username %}">автор: {{post.owner}}</a></div>
+      {% endif %}
+    </p>
+    {% if post.image %}
+    <img src="{{post.image.url}}">
+    {% endif %}
+    <p>{{post.text|linebreaks}}</p>
+    <hr>
+    
+    <form action="{% url 'viewpost' post.id %}" method="POST" class="form">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      {% buttons %}
+        <button class="btn btn-primary" name="submit">Добавить комментарий</button>
+      {% endbuttons %}
+    </form>
+    <div class="comment-header"><h4>Комментарии:</h4></div>
+      {% for comment in comments %}
+        <br>
+        {{comment.text}}
+        <div class="date">Комментарий добавлен: {{comment.date_added}}, <a href="{% url 'userpage' comment.owner %}">автор: {{comment.owner}}</a></div>
+        <hr>
+      {% empty %}
+        <p>Никто пока не комментировал эту запись</p>
+      {% endfor %}
+  </div>
+{% endblock content %}

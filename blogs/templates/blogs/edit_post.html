@@ -1,0 +1,18 @@
+{% extends "blogs/base.html" %}
+{% load bootstrap4 %}
+{% block header %}
+  <div> 
+    <h3>Отредактируйте сообщение:</h3>
+  </div>
+{% endblock header %}
+{% block content %}
+  <p>Тема: {{post.title}}</p>
+  <br>
+  <form action="{% url 'edit_post' post.id %}" method="POST" class="form" enctype='multipart/form-data'>
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+      <button name="submit" class="btn btn-primary">Сохранить</button>
+    {% endbuttons %}
+  </form>
+{% endblock content %}
