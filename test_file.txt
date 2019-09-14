@@ -1,0 +1,2971 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="content-type"/>
+  <meta content="Официальный сайт единой информационной системы в сфере закупок 44 ФЗ и 223 ФЗ" name="description"/>
+  <title>
+   Планы-графики и планы закупки
+  </title>
+  <script type="text/javascript">
+   var contextPath = "/epz/orderplan";
+        var epzMainPublicUrl = "/epz/main/public/";
+  </script>
+  <link href="/epz/orderplan/images/icons/Portal.ico" rel="shortcut icon"/>
+  <link href="/epz/orderplan/css/app.css" media="all" rel="stylesheet" type="text/css">
+   <link href="/epz/orderplan/css/skin.css" media="all" rel="stylesheet" type="text/css"/>
+   <link href="/epz/orderplan/css/jquery.datepick.css" rel="stylesheet" type="text/css"/>
+   <link href="/epz/orderplan/css/barChart.css" rel="stylesheet" type="text/css"/>
+   <link href="/epz/orderplan/css/ui.dynatree.css" rel="stylesheet" type="text/css"/>
+   <link href="/epz/orderplan/css/jquery_msgbox.css" rel="stylesheet" type="text/css"/>
+   <script src="/epz/orderplan/js/d3.v5.min.js">
+   </script>
+   <script src="/epz/orderplan/js/jquery-3.3.1.min.js">
+   </script>
+   <script src="/epz/orderplan/js/ui_autocomplete.js" type="text/javascript">
+   </script>
+   <script src="/epz/orderplan/js/jquery-migrate-3.0.1.min.js" type="text/javascript">
+   </script>
+   <script src="/epz/orderplan/js/validation/jquery.validate.js" type="text/javascript">
+   </script>
+   <script src="/epz/orderplan/js/mustache.min.js" type="text/javascript">
+   </script>
+   <script src="/epz/orderplan/js/jquery.price_format.1.7.js" type="text/javascript">
+   </script>
+   <script src="/epz/orderplan/js/jquery.jcarousel.min.js" type="text/javascript">
+   </script>
+   <script src="/epz/orderplan/js/jquery.maskedinput.min.js" type="text/javascript">
+   </script>
+   <script src="/epz/orderplan/js/jquery.cookie.min.js" type="text/javascript">
+   </script>
+   <script src="/epz/orderplan/js/js.cookie.js" type="text/javascript">
+   </script>
+   <script type="text/javascript">
+    $(document).ready(function(){
+            var notUsual = (($.cookie("usePoorVisionOption") == 'true') && $(".goodVisionLink").length == 0);
+            var notPoorVision = (($.cookie("usePoorVisionOption") != 'true') && $(".poorVisionLink").length == 0);
+            if (notUsual || notPoorVision){
+                location.reload();
+            }
+        });
+   </script>
+   <script src="/epz/orderplan/js/jquery.dynatree.js" type="text/javascript">
+   </script>
+   <script src="/epz/orderplan/js/jquery.ui.datepicker-ru.js" type="text/javascript">
+   </script>
+   <script src="/epz/orderplan/js/moment.min.js" type="text/javascript">
+   </script>
+   <script src="/epz/orderplan/js/moment-timezone.min.js" type="text/javascript">
+   </script>
+   <script src="/epz/orderplan/js/validation/jquery.numeric.js" type="text/javascript">
+   </script>
+   <script src="/epz/orderplan/js/action-switch.js" type="text/javascript">
+   </script>
+   <script src="/epz/orderplan/js/browser.js" type="text/javascript">
+   </script>
+   <script src="/epz/orderplan/js/app.js" type="text/javascript">
+   </script>
+   <script src="/epz/orderplan/js/baseLayout.js" type="text/javascript">
+   </script>
+   <script src="/epz/orderplan/js/script.js" type="text/javascript">
+   </script>
+   <script src="/epz/orderplan/js/checkNotice.js" type="text/javascript">
+   </script>
+   <script src="/epz/orderplan/js/common/config.js" type="text/javascript">
+   </script>
+   <script src="/epz/orderplan/js/common/choose-headagency.js" type="text/javascript">
+   </script>
+   <script src="/epz/orderplan/js/common/choose-okpd.js" type="text/javascript">
+   </script>
+   <script src="/epz/orderplan/js/custom.js" type="text/javascript">
+   </script>
+   <script src="/epz/orderplan/js/popupCommon.js" type="text/javascript">
+   </script>
+   <script src="/epz/orderplan/js/common/choose-organization.js" type="text/javascript">
+   </script>
+   <script src="/epz/orderplan/js/URI.js" type="text/javascript">
+   </script>
+   <script src="/epz/orderplan/js/common/analytics.js" type="text/javascript">
+   </script>
+   <script src="/epz/orderplan/js/jquery_msgBox.js" type="text/javascript">
+   </script>
+   <script src="/epz/orderplan/js/keyboardControl.js" type="text/javascript">
+   </script>
+   <script src="/epz/orderplan/js/keyboardNavigationRules.js" type="text/javascript">
+   </script>
+   <script type="text/javascript">
+    if (!window.console) console = {
+        log: function () {
+        }
+    };
+   </script>
+   <script type="text/javascript">
+    epzCommonConfig.initCommonConfig({
+        contextPath: '/epz/orderplan',
+        smartSearchEnable: true,
+
+        urls: {
+            epzMainPublicUrl: '/epz/main/public/',
+            epzNsiUrl: '/epz/nsi/',
+            epzOrderUrl: '/epz/order/',
+            epzOrderPlanUrl: '/epz/orderplan/',
+            epzOrderClauseUrl: '/epz/orderclause/',
+            epzContractUrl: '/epz/contract/',
+            epzContractFz223Url: '/epz/contractfz223/',
+            epzContractReportingUrl: '/epz/contractreporting/',
+            epzCustomerReportsUrl: '/epz/customerreports/',
+            epzOrganizationUrl: '/epz/organization/',
+            epzDishonestSupplierUrl: '/epz/dishonestsupplier/',
+            epzComplaintUrl: '/epz/complaint/',
+            epzBankGuaranteeUrl: '/epz/bankguarantee/',
+            epzInspectionPlanUrl: '/epz/inspectionplan/',
+            epzUnscheduledInspectionUrl: '/epz/unscheduledinspection/',
+            epzControlResultUrl: '/epz/controlresult/',
+            epzDizkUrl: '/epz/dizk/',
+            epzEsUrl: '/analytics/hit/',
+            epzFarmUrl: '/epz/farm/'
+        }
+    });
+   </script>
+  </link>
+ </head>
+ <body>
+  <script type="text/javascript">
+   if ($.cookie('usePoorVisionOption') === 'true') {
+        var body = $('body');
+        var style = '', styleColor = '';
+        var color = $.cookie('colorSpectrumForPoorVision');
+        body.addClass('poorVision');
+        if (color) {
+            body.addClass(color + 'ColorSpectrum');
+            switch (color) {
+                case 'white':
+                    style = '#ffffff';
+                    styleColor = '#000000';
+                    break;
+                case 'black':
+                    style = '#000000';
+                    styleColor = '#ffffff'
+                    break;
+                case 'blue':
+                    style = '#9DD1FF';
+                    styleColor = '#063462';
+                    break;
+                case 'brown':
+                    style = '#442713';
+                    styleColor = '#a9e44d';
+                    break;
+                case 'biege':
+                    style = '#F7F3D6';
+                    styleColor = '#49442e';
+                    break;
+                default:
+                    break;
+            }
+            body.css({backgroundColor: style, color:styleColor});
+        }else{
+            body.addClass('whiteColorSpectrum');
+        }
+
+        var fontSize = $.cookie('fontSizeForPoorVision');
+        if (fontSize) {
+            body.addClass('fontSizeForPoorVision' + fontSize);
+        }else{
+            body.addClass('fontSizeForPoorVision100');
+        }
+    }
+  </script>
+  <div id="critical_notice">
+  </div>
+  <header class="header header-top">
+   <div class="container">
+    <div class="row align-items-center">
+     <div class="col-2 offset-1" style="z-index: 1;">
+      <span class="logo header-offset text-base-micro">
+       Официальный сайт
+      </span>
+     </div>
+     <div class="col-3 offset-sm-2 offset-md-2 offset-lg-3">
+      <a data-modalup="" href="/epz/nsi/kladr/chooseRegion.html" id="chooseRegion">
+       <div class="region" data-target=".modal-region" data-toggle="modal-region">
+        <span class="region-city">
+         <span class="region-city__icon">
+          <img src="/epz/orderplan/img/icons/icon_region.svg" title="Информация о местоположении пользователя используется в поисковых запросах для динамической детализации результатов поиска."/>
+         </span>
+         <span class="region-city__text region-city__text_base text-base-micro">
+          Мой регион:
+         </span>
+        </span>
+        <span class="region-city">
+         <span class="region-city__text region-city__text_prime text-base-micro region_name" id="popUpUserRegionName">
+         </span>
+         <span class="region-city__icon">
+          <img alt="" src="/epz/orderplan/img/icons/icon_arrow_region.svg"/>
+         </span>
+        </span>
+       </div>
+      </a>
+     </div>
+     <div class="col-1">
+      <div class="header-links-group offset-block">
+       <a class="header-link header-link_top" href="#">
+        <span class="header-link__icon poorVisionLink">
+         <img alt="" class="glass-icon" src="/epz/orderplan/img/icons/icon_eye.svg"/>
+        </span>
+       </a>
+      </div>
+     </div>
+     <div class="col-2">
+      <div class="account">
+       <div class="account-block">
+        <span class="icon">
+         <img alt="" src="/epz/orderplan/img/icons/icon_user.svg"/>
+        </span>
+        <span class="text padLeft4">
+         Личный кабинет
+        </span>
+        <span class="button-open icon">
+         <img alt="" src="/epz/orderplan/img/icons/icon_arrow_lk.svg"/>
+        </span>
+       </div>
+       <ul class="account-vars">
+        <li class="account__var" data-toggle="modal-account44">
+         <a class="account__link" data-modalup="" href="/epz/main/public/chooseAuth44.html" target="_blank">
+          <span class="icon">
+           <img alt="" src="/epz/orderplan/img/icons/arrow.svg"/>
+          </span>
+          <span class="text text_bottom">
+           Личный кабинет
+          </span>
+          <span class="subtext">
+           44-Ф3
+          </span>
+         </a>
+        </li>
+        <li class="account__var" data-toggle="modal-account223">
+         <a class="account__link" data-modalup="" href="/epz/main/public/chooseAuth223.html" target="_blank">
+          <span class="icon">
+           <img alt="" src="/epz/orderplan/img/icons/arrow.svg"/>
+          </span>
+          <span class="text text_bottom">
+           Личный кабинет
+          </span>
+          <span class="subtext">
+           223-ФЗ
+          </span>
+         </a>
+        </li>
+        <li class="account__var" data-toggle="modal-account-private">
+         <a class="account__link" href="http://eruz.zakupki.gov.ru/auth/welcome">
+          <span class="icon">
+           <img alt="" src="/epz/orderplan/img/icons/arrow.svg"/>
+          </span>
+          <span class="text text_bottom">
+           Личный кабинет участника закупок
+          </span>
+         </a>
+        </li>
+       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+  </header>
+  <header class="header header-mid">
+   <div class="container">
+    <div class="row">
+     <div class="col-1">
+      <a href="/epz/main/public/home.html">
+       <figure class="header-logo">
+        <img alt="" class="header-logo__img" src="/epz/orderplan/img/header/emblem.svg"/>
+       </figure>
+      </a>
+     </div>
+     <div class="col-4 custom-tooltip">
+      <h3 class="heading-h3 header-offset" id="header-title-site" onclick="location.href='/epz/main/public/home.html';">
+       Единая информационная система в сфере закупок
+      </h3>
+      <span class="tooltiptext">
+       Официальный сайт единой информационной системы в сфере закупок в информационно-телекоммуникационной сети Интернет (далее – Официальный сайт ЕИС) предназначен для обеспечения свободного и безвозмездного доступа к полной и достоверной информации о контрактной системе в сфере закупок и закупках товаров, работ, услуг, отдельными видами юридических лиц, а также для формирования, обработки и хранения такой информации.   Порядок размещения информации на Официальном сайте ЕИС и ее содержание регламентируется Федеральным законом от 05.04.2013 № 44-ФЗ «О контрактной системе в сфере закупок товаров, работ, услуг для обеспечения государственных и муниципальных нужд» и Федеральным законом от 18.07.2011 № 223-ФЗ «О закупках товаров, работ, услуг отдельными видами юридических лиц», а также соответствующими подзаконными актами.
+      </span>
+     </div>
+     <div class="col-3 offset-md-0 offset-lg-1">
+      <address class="phone">
+       <a class="phone__text" href="tel:+74958110333">
+        <span class="heading-h4">
+         8 495 811-03-33
+        </span>
+       </a>
+       <span class="phone__desc text-base-micro">
+        Москва
+       </span>
+      </address>
+      <address class="phone">
+       <a class="phone__text" href="tel:+74958110333">
+        <span class="heading-h4">
+         8 800 333-81-11
+        </span>
+       </a>
+       <span class="phone__desc text-base-micro">
+        Россия
+       </span>
+      </address>
+     </div>
+     <div class="col-3">
+      <div class="header-links-group offset-block">
+       <div class="wrapper-link">
+        <a class="header-link header-link header-link_icon_left" href="/epz/main/public/user-feedback.html">
+         <span class="header-link__icon">
+          <img alt="" src="/epz/orderplan/img/icons/icon_mail.svg"/>
+         </span>
+         <span class="header-link__text header-link__text_prime">
+          Техническая поддержка
+         </span>
+        </a>
+       </div>
+       <div class="wrapper-link">
+        <a class="header-link header-link header-link_icon_left" href="/epz/main/public/qa/view.html">
+         <span class="header-link__icon">
+          <img alt="" src="/epz/orderplan/img/icons/icon_quest.svg"/>
+         </span>
+         <span class="header-link__text header-link__text_prime">
+          Часто задаваемые вопросы
+         </span>
+        </a>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </header>
+  <header class="header header-bottom">
+   <div class="container">
+    <div class="row">
+     <div class="col-lg-12">
+      <div class="menu-container">
+       <ul class="menu-mega" style="margin:0px;">
+        <ul class="menu-list">
+         <li class="main-item hasnt-subitems" style="cursor: pointer;">
+          <a class="_orderSearch main-link" href="/epz/order/quicksearch/search.html">
+           Закупки
+          </a>
+         </li>
+         <li class="main-item">
+          <a class="main-link">
+           Планирование
+          </a>
+          <ul>
+           <li class="submenu-col">
+            <ul class="submenu-list menu-list">
+             <li class="submenu-list__item">
+              <a class="_purchasePlanFz44Search submenu-list__link" href="/epz/purchaseplanfz44/quicksearch/search.html">
+               <span class="link__text">
+                Планы закупок
+               </span>
+               <span class="link__desc">
+                44-ФЗ
+               </span>
+              </a>
+             </li>
+             <li class="submenu-list__item">
+              <a class="_planSearch submenu-list__link" href="/epz/orderplan/quicksearch/search.html">
+               <span class="link__text">
+                Планы-графики закупок
+               </span>
+               <span class="link__desc">
+                44-ФЗ
+               </span>
+               <span class="link__text">
+                и Планы закупки
+               </span>
+               <span class="link__desc">
+                223-ФЗ
+               </span>
+              </a>
+             </li>
+             <li class="submenu-list__item">
+              <a class="_obozSearch submenu-list__link" href="/epz/oboz/public/quicksearch/search.html">
+               <span class="link__text">
+                Обязательное общественное обсуждение закупок
+               </span>
+               <span class="link__desc">
+                44-ФЗ
+               </span>
+              </a>
+             </li>
+             <li class="submenu-list__item">
+              <a class="_pricereqSearch submenu-list__link" href="/epz/pricereq/quicksearch/search.html">
+               <span class="link__text">
+                Запросы цен товаров, работ, услуг
+               </span>
+               <span class="link__desc">
+                44-ФЗ
+               </span>
+              </a>
+             </li>
+             <li class="submenu-list__item">
+              <a class="_normalizationRulesSearch submenu-list__link" href="/epz/normalizationrules/quicksearch/search.html">
+               <span class="link__text">
+                Правила нормирования в сфере закупок
+               </span>
+               <span class="link__desc">
+                44-ФЗ
+               </span>
+              </a>
+             </li>
+             <li class="submenu-list__item">
+              <a class="_orderClauseSearch submenu-list__link" href="/epz/orderclause/quicksearch/search.html">
+               <span class="link__text">
+                Положения о закупке
+               </span>
+               <span class="link__desc">
+                223-ФЗ
+               </span>
+              </a>
+             </li>
+             <li class="submenu-list__item">
+              <a class="_typalClauseSearch submenu-list__link" href="/epz/typalclause/quicksearch/search.html">
+               <span class="link__text">
+                Типовые положения о закупке
+               </span>
+               <span class="link__desc">
+                223-ФЗ
+               </span>
+              </a>
+             </li>
+            </ul>
+           </li>
+          </ul>
+         </li>
+         <li class="main-item">
+          <a class="main-link">
+           Контракты и договоры
+          </a>
+          <ul>
+           <li class="submenu-col">
+            <ul class="submenu-list menu-list">
+             <li class="submenu-list__item">
+              <a class="_contractSearch submenu-list__link" href="/epz/contract/quicksearch/search.html">
+               <span class="link__text">
+                Реестр контрактов
+               </span>
+               <span class="link__desc">
+                44-ФЗ
+               </span>
+              </a>
+             </li>
+             <li class="submenu-list__item">
+              <a class="_contractfz223 submenu-list__link" href="/epz/contractfz223/quicksearch/search.html">
+               <span class="link__text">
+                Реестр договоров
+               </span>
+               <span class="link__desc">
+                223-ФЗ
+               </span>
+              </a>
+             </li>
+             <li class="submenu-list__item">
+              <a class="_capitalRepairsSearch submenu-list__link" href="/epz/capitalrepairs/quicksearch/search.html">
+               <span class="link__text">
+                Реестр договоров о проведении капитального ремонта
+               </span>
+               <span class="link__desc">
+                ПП РФ 615
+               </span>
+              </a>
+             </li>
+             <li class="submenu-list__item">
+              <a class="_dizkSearch submenu-list__link" href="/epz/dizk/quicksearch/search.html">
+               <span class="link__text">
+                Дополнительная информация о
+               </span>
+              </a>
+             </li>
+            </ul>
+           </li>
+          </ul>
+         </li>
+        </ul>
+       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+  </header>
+ </body>
+</html>
+контрактах
+<span class="link__desc">
+ 44-ФЗ
+</span>
+<li class="submenu-list__item">
+ <a class="_btkSearch submenu-list__link" href="/epz/btk/quicksearch/search.html">
+  <span class="link__text">
+   Библиотека типовых контрактов, типовых условий контрактов
+  </span>
+  <span class="link__desc">
+   44-ФЗ
+  </span>
+ </a>
+</li>
+<li class="main-item">
+ <a class="main-link">
+  Организации
+ </a>
+ <ul>
+  <li class="submenu-col">
+   <ul class="submenu-list menu-list">
+    <li class="submenu-list__item">
+     <a class="_organization_search submenu-list__link" href="/epz/organization/quicksearch/search.html">
+      <span class="link__text">
+       Реестр зарегистрированных организаций
+      </span>
+      <span class="link__desc">
+       44-ФЗ, 223-ФЗ
+      </span>
+     </a>
+    </li>
+    <li class="submenu-list__item">
+     <a class="_customer223Search submenu-list__link" href="/epz/customer223/quicksearch/search.html">
+      <span class="link__text">
+       Реестр заказчиков
+      </span>
+      <span class="link__desc">
+       223-ФЗ
+      </span>
+     </a>
+    </li>
+    <li class="submenu-list__item">
+     <a class="_eruzSearch submenu-list__link" href="/epz/eruz/quicksearch/search.html">
+      <span class="link__text">
+       Единый реестр участников закупок
+      </span>
+      <span class="link__desc">
+       44-ФЗ
+      </span>
+     </a>
+    </li>
+    <li class="submenu-list__item">
+     <a class="_rkpoSearch submenu-list__link" href="/epz/rkpo/quicksearch/search.html">
+      <span class="link__text">
+       Сводный реестр квалифицированных подрядных организаций
+      </span>
+      <span class="link__desc">
+       ПП РФ 615
+      </span>
+     </a>
+    </li>
+   </ul>
+  </li>
+ </ul>
+</li>
+<li class="main-item">
+ <a class="main-link">
+  Мониторинг и отчетность
+ </a>
+ <ul>
+  <li class="submenu-col">
+   <ul class="submenu-list menu-list">
+    <li class="submenu-list__item">
+     <a class="_freeAnalyticalReport submenu-list__link" href="/epz/legalacts/report/quicksearch/search.html">
+      <span class="link__text">
+       Сводные аналитические отчеты
+      </span>
+      <span class="link__desc">
+       44-ФЗ
+      </span>
+     </a>
+    </li>
+    <li class="submenu-list__item">
+     <a class="_revenueSearch submenu-list__link" href="/epz/revenue/quicksearch/search.html">
+      <span class="link__text">
+       Реестр информации об объеме выручки отдельных видов юридических лиц
+      </span>
+      <span class="link__desc">
+       223-ФЗ
+      </span>
+     </a>
+    </li>
+    <li class="submenu-list__item">
+     <a class="_customerReportsSearch44 submenu-list__link" href="/epz/customerreports/quicksearch/search.html?morphology=on&amp;pageNumber=1&amp;sortDirection=false&amp;recordsPerPage=_10&amp;sortBy=UPDATE_DATE&amp;fz44=on&amp;customerReportsType_0=on&amp;customerReportsType_1=on&amp;customerReportsType_2=on&amp;customerReportsType_3=on&amp;customerReportsType=0%2C1%2C2%2C3®ionDeleted=false&amp;published=on">
+      <span class="link__text">
+       Отчеты заказчиков по контрактам
+      </span>
+      <span class="link__desc">
+       44-ФЗ
+      </span>
+     </a>
+    </li>
+   </ul>
+   <ul class="containts_subitems">
+    <div>
+     <li class="submenu-list__item__disabled">
+      <span class="submenu-list__link">
+       <span class="link__text">
+        Отчеты заказчиков по договорам
+       </span>
+       <span class="link__desc">
+        223-ФЗ
+       </span>
+      </span>
+     </li>
+    </div>
+    <div class="submenu_subitem">
+     <li class="submenu-list__item">
+      <a class="_contract-reporting submenu-list__link" href="/epz/contractreporting/quicksearch/search.html">
+       <span class="link__text">
+        Сведения по договорам
+       </span>
+      </a>
+     </li>
+     <li class="submenu-list__item">
+      <a class="_customerReportsSearch223 submenu-list__link" href="/epz/customerreports/quicksearch/search.html?morphology=on&amp;pageNumber=1&amp;sortDirection=false&amp;recordsPerPage=_10&amp;sortBy=UPDATE_DATE&amp;fz223=on&amp;customerReportsType_4=on&amp;customerReportsType_5=on&amp;customerReportsType=4%2C5®ionDeleted=false">
+       <span class="link__text">
+        Годовые отчеты
+       </span>
+      </a>
+     </li>
+    </div>
+   </ul>
+   <ul>
+    <li class="submenu-list__item">
+     <a class="_activitySearch submenu-list__link" href="/epz/activity/quicksearch/search.html">
+      <span class="link__text">
+       Отчеты о проведенных контрольных мероприятиях в сфере закупок
+      </span>
+      <span class="link__desc">
+       44-ФЗ
+      </span>
+     </a>
+    </li>
+   </ul>
+   <ul class="submenu-list menu-list">
+    <li class="submenu-list__item">
+     <a class="_cmrSearch submenu-list__link" href="/epz/cmr/quicksearch/search.html">
+      <span class="link__text">
+       Отчет Корпорации МСП
+      </span>
+      <span class="link__desc">
+       223-ФЗ
+      </span>
+     </a>
+    </li>
+   </ul>
+  </li>
+ </ul>
+</li>
+<li class="main-item">
+ <a class="main-link">
+  Контроль и аудит
+ </a>
+ <ul>
+  <li class="submenu-col">
+   <ul class="submenu-list menu-list">
+    <li class="submenu-list__item">
+     <a class="_dishonestSupplierSearch submenu-list__link" href="/epz/dishonestsupplier/quicksearch/search.html">
+      <span class="link__text">
+       Реестр недобросовестных поставщиков (подрядчиков, исполнителей, подрядных организаций)
+       <span class="link__desc largeDecor">
+        44-ФЗ, 223-ФЗ, ПП РФ 615
+       </span>
+      </span>
+     </a>
+    </li>
+   </ul>
+   <ul class="containts_subitems">
+    <div>
+     <li class="submenu-list__item">
+      <a class="_aggregateFeedback submenu-list__link" href="/epz/main/public/aggregate-feedback.html">
+       <span class="link__text">
+        Реестр жалоб, плановых и внеплановых проверок, их результатов и выданных предписаний
+       </span>
+       <span class="link__desc">
+       </span>
+      </a>
+     </li>
+    </div>
+    <div class="submenu_subitem">
+     <li class="submenu-list__item">
+      <a class="_complaintSearch submenu-list__link" href="/epz/complaint/quicksearch/search_eis.html">
+       <span class="link__text">
+        Жалобы
+        <span class="link__desc">
+         44-ФЗ, 223-ФЗ
+        </span>
+       </span>
+      </a>
+     </li>
+     <li class="submenu-list__item">
+      <a class="_inspectionPlanSearch submenu-list__link" href="/epz/inspectionplan/quicksearch/search_eis.html">
+       <span class="link__text">
+        Плановые проверки
+        <span class="link__desc">
+         44-ФЗ
+        </span>
+       </span>
+      </a>
+     </li>
+     <li class="submenu-list__item">
+      <a class="_unscheduledInspectionSearch submenu-list__link" href="/epz/unscheduledinspection/quicksearch/search_eis.html">
+       <span class="link__text">
+        Внеплановые проверки
+        <span class="link__desc">
+         44-ФЗ
+        </span>
+       </span>
+      </a>
+     </li>
+     <li class="submenu-list__item">
+      <a class="_controlResultSearch submenu-list__link" href="/epz/controlresult/quicksearch/search_eis.html">
+       <span class="link__text">
+        Результаты контроля
+        <span class="link__desc">
+         44-ФЗ
+        </span>
+       </span>
+      </a>
+     </li>
+    </div>
+   </ul>
+   <ul>
+    <li class="submenu-list__item">
+     <a class="_auditSearch submenu-list__link" href="/epz/audit/quicksearch/search.html">
+      <span class="link__text">
+       Информация о результатах деятельности органов аудита
+       <span class="link__desc">
+        44-ФЗ
+       </span>
+      </span>
+     </a>
+    </li>
+   </ul>
+  </li>
+ </ul>
+</li>
+<li class="main-item">
+ <a class="main-link">
+  Документы
+ </a>
+ <ul class="submenu_with_threeblock" id="menu-columns-container-DOCUMENTS">
+ </ul>
+</li>
+<li class="main-item">
+ <a class="main-link">
+  Дополнительная информация
+ </a>
+ <ul class="submenu_with_threeblock" id="menu-columns-container-ADDITIONAL_INFO">
+  <li class="submenu-col">
+   <ul class="submenu-list menu-list">
+    <li class="submenu-list__item">
+     <a class="_ktruSearch submenu-list__link" href="/epz/ktru/start/startPage.html">
+      <span class="link__text">
+       Каталог товаров, работ, услуг
+      </span>
+      <span class="link__desc">
+       44-ФЗ
+      </span>
+     </a>
+    </li>
+    <li class="submenu-list__item">
+     <a class="_bankGuaranteeSearch submenu-list__link" href="/epz/bankguarantee/quicksearch/search.html">
+      <span class="link__text">
+       Реестр банковских гарантий
+      </span>
+      <span class="link__desc">
+       44-ФЗ
+      </span>
+     </a>
+    </li>
+   </ul>
+   <ul class="containts_subitems">
+    <div>
+     <li class="submenu-list__item__disabled">
+      <span class="submenu-list__link">
+       <span class="link__text">
+        Информация об инвестиционных контрактах
+       </span>
+       <span class="link__desc">
+        44-ФЗ
+       </span>
+      </span>
+     </li>
+    </div>
+    <div class="submenu_subitem">
+     <li class="submenu-list__item">
+      <a class="_repSearch submenu-list__link" href="/epz/rep/quicksearch/search.html">
+       <span class="link__text largeDecor">
+        Реестр единственных поставщиков
+       </span>
+       <span class="link__desc largeDecor">
+        ст. 111.3, ст. 111.4 44-ФЗ
+       </span>
+      </a>
+     </li>
+     <li class="submenu-list__item">
+      <a class="_roptSearch submenu-list__link" href="/epz/ropt/quicksearch/search.html">
+       <span class="link__text largeDecor">
+        Отчеты производителей о соблюдении требований
+        <span class="link__desc largeDecor">
+         п.5 ч.1 ст.111.3 44-ФЗ
+        </span>
+       </span>
+      </a>
+     </li>
+    </div>
+   </ul>
+   <ul>
+    <li class="submenu-list__item">
+     <a class="_gwsSearch submenu-list__link" href="/epz/gws/quicksearch/search.html">
+      <span class="link__text">
+       Перечни товаров, работ, услуг
+      </span>
+      <span class="link__desc">
+       223-ФЗ
+      </span>
+     </a>
+    </li>
+    <li class="submenu-list__item">
+     <a class="_mechProducts submenu-list__link" href="/epz/mechproducts/quicksearch/search.html">
+      <span class="link__text">
+       Перечни перспективных потребностей в продукции машиностроения
+      </span>
+      <span class="link__desc">
+       223-ФЗ
+      </span>
+     </a>
+    </li>
+   </ul>
+  </li>
+ </ul>
+</li>
+<script type="text/javascript">
+ function selectCurrentMenuItem() {
+        
+        var sectionSelector = "li:has(a[class*='_planSearch'])";
+
+        if ($(sectionSelector).attr('class') == $('.hasnt-subitems').attr('class'))
+            
+            
+        
+        $(sectionSelector).css('border-bottom', '3px solid #0065dd');
+        
+        
+    else
+        {
+            
+            
+            
+            $(sectionSelector).parents('ul').parents('li').not($(this).parents('ul')).last().css('border-bottom', '3px solid #0065dd');
+            
+            
+            if ($('._planSearch').parent() != 'li')
+                $('._planSearch').parent('li').addClass('active-subitems');
+        }
+        
+    }
+
+    $(document).ready(function () {
+        selectCurrentMenuItem();
+    });
+</script>
+<script src="/epz/orderplan/js/search/quickSearch.js" type="text/javascript">
+</script>
+<script src="/epz/orderplan/js/search/saveQuickSearchSettingsPopup.js" type="text/javascript">
+</script>
+<script src="/epz/orderplan/js/search/search.js" type="text/javascript">
+</script>
+<script src="/epz/orderplan/js/quickSearchForm.js" type="text/javascript">
+</script>
+<script src="/epz/orderplan/js/jquery.ui.datepicker.validation.js" type="text/javascript">
+</script>
+<script src="/epz/orderplan/js/validation/jqueryCustomValidateFields.js" type="text/javascript">
+</script>
+<form action="/epz/orderplan/quicksearch/search.html" class="formValidation" id="quickSearchForm_header" method="GET">
+ <script src="/epz/orderplan/js/searchString.js" type="text/javascript">
+ </script>
+ <div class="searchBlockAll zakupkiSearch">
+  <div class="searchBox titleTop">
+   <span class="titleField padBtm5">
+    Планы-графики и планы закупки
+   </span>
+   <div class="searchField">
+    <input autocomplete="off" class="autocompleteOrder hint clearValue withoutAutocomplete" id="searchString" name="searchString" title="Введите полностью или часть номера плана, наименования предмета контракта или договора, наименования или ИНН Заказчика, идентификационного кода закупки (ИКЗ)" type="text" value="sdf"/>
+    <div class="clearButton">
+    </div>
+    <input onclick="submitQuickSearchForm();" type="button" value=""/>
+   </div>
+   <p class="accounting">
+    <a class="extendedSearchLink floatRight" href="#" onclick="goExtendedSearch('/epz/orderplan/extendedsearch/search.html')">
+     Расширенный поиск
+    </a>
+    <label>
+     <span class="customCheck" id="morphologyWrapper" onclick="morphologyWrapperClick()">
+      <input class="margLeft1" id="morphology" name="morphology" onclick="uncheckSearchStringCheckBox($('#strictEqual'));" type="checkbox"/>
+     </span>
+     С учетом всех форм слов
+    </label>
+    <label>
+     <span class="mainPageStrictEqual customCheck" id="strictEqualWrapper" onclick="strictEqualWrapperClick()">
+      <input class="margLeft3" id="strictEqual" name="strictEqual" onclick="uncheckSearchStringCheckBox($('#morphology'));" type="checkbox"/>
+     </span>
+     Строгое соответствие
+    </label>
+   </p>
+  </div>
+ </div>
+ <div class="filterParametrs">
+  <div class="collapceBox collapceAdd">
+   <span class="collapce">
+    Свернуть фильтр
+   </span>
+   <span class="expand d-none">
+    Развернуть фильтр
+   </span>
+  </div>
+  <ul>
+   <li class="currentPar" id="setParametersTitle">
+    Установленные параметры
+   </li>
+   <li class="currentPar" id="editParametersTitle" style="display: none;">
+    Уточняющие параметры
+   </li>
+   <li class="withoutBorder" id="setParametersLink" onclick="showSearchParameters()">
+    <a href="#">
+     Уточнить параметры поиска
+    </a>
+   </li>
+  </ul>
+  <div class="clear">
+  </div>
+ </div>
+ <div class="filterBlock">
+  <div class="greyBox">
+   <ul class="listParametrsSearch" id="searchOptionsViewContainer">
+    <li>
+     <label>
+      Отображать в результатах поиска:
+     </label>
+     <span class="resultItem" data-input="">
+      Планы-графики (планы закупки)
+     </span>
+    </li>
+    <li>
+     <label>
+      Тип записи в реестре:
+     </label>
+     <span class="resultItem" data-input="structured">
+      Структурированный
+      <span>
+      </span>
+     </span>
+    </li>
+    <li>
+     <label>
+      Законы:
+     </label>
+     <span class="resultItem" data-input="fz44">
+      44-ФЗ
+      <span style="display: inline-block;height: 18px;">
+      </span>
+     </span>
+     <span class="resultItem" data-input="fz223">
+      223-ФЗ
+      <span style="display: inline-block;height: 18px;">
+      </span>
+     </span>
+    </li>
+    <li>
+     <label>
+      Период действия плана-графика (плана закупки):
+     </label>
+     <span class="resultItem" data-input="actualPeriodStart">
+      с 01.01.2019 по 31.12.2019
+      <span style="display: inline-block;height: 18px;">
+      </span>
+     </span>
+    </li>
+    <li class="clear">
+    </li>
+   </ul>
+   <ul class="listParametrsChoice reestrQuaranty" id="searchOptionsEditContainer">
+    <script type="text/javascript">
+     $(document).ready(function () {
+        $("#searchTypeTag").on("setDefaultValues", function () {
+            $("#plans_radio").attr("checked", true);
+            $("#position_and_plans_radio").attr("checked", false);
+        });
+    });
+    </script>
+    <li id="searchTypeTag">
+     <label class="padTop5">
+      Отображать в результатах поиска:
+     </label>
+     <ul class="lowList d-inline-block" style="width: 600px;">
+      <li class="vAlignTop ppParams">
+       <label class="radio-inside">
+        <input checked="" class="radio-head" id="plans_radio" name="searchType" type="radio" value="false"/>
+        Планы-графики (планы закупки)
+       </label>
+      </li>
+      <li class="vAlignTop ppParams">
+       <label class="radio-inside">
+        <input class="radio-head" id="position_and_plans_radio" name="searchType" type="radio" value="true"/>
+        Позиции планов-графиков (планов закупки)
+       </label>
+      </li>
+     </ul>
+    </li>
+    <script type="text/javascript">
+     $(document).ready(function () {
+    $("#recordTypeTag").on("setDefaultValues", function () {
+      $("#structured").prop("checked", true);
+      $("#notStructured").prop("checked", false);
+    });
+    $("#recordTypeTag input[type='checkbox']").on("delete", function (event) {
+      $(this).prop("checked", false);
+    });
+  });
+
+  function _recordTypeDispatchEvent(obj) {
+    $(obj).val($(obj).is(":checked"));
+    _placeOfSearchDispatchEvent(false);
+  }
+    </script>
+    <li id="recordTypeTag">
+     <label>
+      Тип записи в реестре:
+     </label>
+     <ul class="lowList purchasePlansTypesUl">
+      <li class="customCheckbox vAlignTop purchasePlansTypesLi">
+       <input checked="" id="structured" name="structured" onchange="_recordTypeDispatchEvent(this)" type="checkbox" value="true"/>
+       <label class="purchasePlansTypesLabel" for="structured">
+        Структурированный
+       </label>
+      </li>
+      <li class="customCheckbox vAlignTop purchasePlansTypesLi">
+       <input data-error_message_container="recordTypeTagErrorContainer" data-validate='{"required": "false", "requireCheckboxes": "#structured"}' data-validate_message='{"requireCheckboxes": "Выберите хотя бы один тип записи в реестре."}' id="notStructured" name="notStructured" onchange="_recordTypeDispatchEvent(this)" type="checkbox" value="false"/>
+       <label class="purchasePlansTypesLabel" for="notStructured">
+        Неструктурированный
+       </label>
+      </li>
+     </ul>
+     <ul>
+      <li id="recordTypeTagErrorContainer">
+      </li>
+     </ul>
+    </li>
+    <script type="text/javascript">
+     $(document).ready(function () {
+        _initClasses();
+
+        $("#placeOfSearchTag").on("setDefaultValues", function () {
+            $("#fz44").prop("checked", true);
+            $("#fz223").prop("checked", true);
+            $("#fz94").prop("checked", false);
+            _placeOfSearchDispatchEvent(false);
+        });
+
+        $("#placeOfSearchTag input[type='checkbox']").on("delete", function (event) {
+            $(this).prop("checked", false);
+        });
+
+        _placeOfSearchDispatchEvent(true);
+
+
+    });
+
+
+    function _placeOfSearchDispatchEvent(isInit) {
+        var searchMap = {
+            "fz44": "FZ_44",
+            "fz223": "FZ_223",
+            "fz94": "FZ_94"
+        };
+        var checkedList = $("#placeOfSearchTag input[type='checkbox']:checked");
+        var placeOfSearchList = $.map(checkedList, function (item) {
+            return searchMap[$(item).prop("id")];
+        });
+        $('#placingWaysTag').each(function () {
+            $(this).trigger("placeOfSearchEvent", {
+                placeOfSearchList: placeOfSearchList,
+                isInitEvent: isInit
+            });
+        });
+        epzCommonChooseOrganization.setListPlaceOfSearch(placeOfSearchList);
+        $("#customerTag").trigger("setDefaultValues");
+        showHint();
+        var classesList = "";
+
+        var classesMap = {
+            "fz44": ".fz44_tag",
+            "fz223": ".fz223_tag",
+            "fz94": ".fz94_tag"
+        };
+        $.each(checkedList, function (i, item) {
+            classesList = classesList + classesMap[$(item).prop("id")];
+        });
+        _changeTagsVisibility(classesList ? classesList : ".fz44_tag.fz223_tag.fz94_tag.ppRf615_tag");
+    }
+
+    function _initClasses() {
+        $('#lotNumberTag').addClass('struct_tag plan_graph_tag');
+        $('#purchasePlanNumberTag').addClass('struct_tag plan_graph_tag');
+        $('#orgPowersCustomerTag').addClass('struct_tag plan_graph_tag');
+        $('#placementFeatureTag').addClass('struct_tag plan_graph_tag fz44_tag');
+        $('#requirementsParticipantsTag').addClass('struct_tag plan_graph_tag fz44_tag');
+        $('#okdpIdsTag').addClass('plan_graph_tag struct_tag not_struct_tag fz223_tag fz94_tag');
+        $('#okpdIdsTag').addClass('plan_graph_tag struct_tag not_struct_tag fz44_tag');
+        $('#ktruTag').addClass('plan_graph_tag struct_tag not_struct_tag fz44_tag');
+        $('#okpd2IdsTag').addClass('plan_graph_tag struct_tag not_struct_tag fz44_tag fz223_tag');
+        $('#ktruTag').addClass('plan_graph_tag struct_tag not_struct_tag fz44_tag');
+        $('#executionRangeTag').addClass('plan_graph_tag struct_tag not_struct_tag fz44_tag fz223_tag');
+        $('#orderplanIkzTag').addClass('struct_tag plan_graph_tag fz44_tag');
+        $('#JointBidsTag').addClass('struct_tag plan_graph_tag fz44_tag');
+        $('#centralizedPurchaseTag').addClass('struct_tag plan_graph_tag fz44_tag');
+        $('#PublicDiscussionTag').addClass('struct_tag plan_graph_tag fz44_tag');
+        $('#notificationNumberTag').addClass('struct_tag plan_graph_tag fz44_tag fz223_tag fz94_tag');
+        $('#placingWaysTag').addClass('struct_tag plan_graph_tag fz44_tag fz223_tag fz94_tag');
+        $('#UseSt111Tag').addClass('struct_tag plan_graph_tag fz44_tag');
+        $('#placingStageTag').addClass('struct_tag plan_graph_tag fz223_tag fz94_tag');
+        $('#placementRangeTag').addClass('struct_tag plan_graph_tag fz44_tag fz223_tag fz94_tag');
+        $('#PlanPurhcaseInfoGroupTag').addClass('struct_tag plan_graph_tag fz44_tag fz223_tag fz94_tag');
+        $('#searchInPlaceTag').addClass('struct_tag plan_graph_tag fz223_tag');
+        $('#advantagesAndRequirementsTag').addClass('struct_tag plan_graph_tag fz44_tag');
+    }
+    function _changeTagsVisibility(classes) {
+        if (classes.indexOf("fz223_tag") !== -1 && classes.indexOf("fz44_tag") === -1 && classes.indexOf("fz94_tag") === -1) {
+            $("#223CustomWaysAddLink").show();
+        } else {
+            $("#223CustomWaysAddLink").hide();
+        }
+        //отображение полей в зависимости от выбранного ФЗ
+        $(".search_tag" + classes).show();
+        $(".search_tag").not(classes).hide();
+        //отображение полей в зависимости от типа записи в реестре (Структурированный/Неструктурированный)
+        var classesList = "";
+        if ($("#structured").is(":checked") && !$("#notStructured").is(":checked")) {
+            classesList = ".struct_tag";
+            $("#fundsTypesTag").show();
+        } else {
+            classesList = ".not_struct_tag";
+            $("#fundsTypesTag").hide();
+        }
+        $(".plan_graph_tag" + classes + classesList).show();
+        $(".plan_graph_tag").not(classes + classesList).trigger('setDefaultValues');
+        $(".plan_graph_tag").not(classes + classesList).hide();
+    }
+    </script>
+    <li id="placeOfSearchTag">
+     <table>
+      <tr>
+       <td style="width: 240px;">
+        <label>
+         Законы:
+        </label>
+       </td>
+       <td>
+        <ul class="lowList" style="padding: 0">
+         <li class="customCheckbox">
+          <input checked="" id="fz44" name="fz44" onchange="_placeOfSearchDispatchEvent(false)" type="checkbox"/>
+          <label for="fz44">
+           44-ФЗ
+          </label>
+         </li>
+         <li class="customCheckbox">
+          <input checked="" id="fz223" name="fz223" onchange="_placeOfSearchDispatchEvent(false)" type="checkbox"/>
+          <label for="fz223">
+           223-ФЗ
+          </label>
+         </li>
+         <li class="customCheckbox">
+          <input id="fz94" name="fz94" onchange="_placeOfSearchDispatchEvent(false)" type="checkbox"/>
+          <label for="fz94">
+           94-ФЗ
+          </label>
+         </li>
+        </ul>
+       </td>
+      </tr>
+     </table>
+    </li>
+    <li class="districtsEventListener" id="regionsTag">
+     <label class="vAlignTop padTop8">
+      Субъект РФ Заказчика:
+     </label>
+     <div class="manySelect width630 inlineBlock">
+      <div class="collapsed height30">
+       <span class="msExpandButton">
+       </span>
+       <span class="msPlaceholder" data-initial="Выберите один или несколько субъектов РФ" title="Выберите один или несколько субъектов РФ">
+        Выберите один или несколько субъектов РФ
+       </span>
+      </div>
+      <div class="selectChose">
+       <div class="expanded regionsExpanded">
+        <ul id="regionsTagDataContainer">
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item not-selected-many-select-item" id="region_regions_not_selected" name="region_regions_not_selected" type="checkbox" value="region_regions_not_selected"/>
+           <label for="region_regions_not_selected" style="width: calc(100% - 50px) !important;">
+            Не выбран
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277349" name="region_regions_5277349" type="checkbox" value="region_regions_5277349"/>
+           <label for="region_regions_5277349" style="width: calc(100% - 50px) !important;">
+            Адыгея Респ
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277385" name="region_regions_5277385" type="checkbox" value="region_regions_5277385"/>
+           <label for="region_regions_5277385" style="width: calc(100% - 50px) !important;">
+            Алтай Респ
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277388" name="region_regions_5277388" type="checkbox" value="region_regions_5277388"/>
+           <label for="region_regions_5277388" style="width: calc(100% - 50px) !important;">
+            Алтайский край
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277403" name="region_regions_5277403" type="checkbox" value="region_regions_5277403"/>
+           <label for="region_regions_5277403" style="width: calc(100% - 50px) !important;">
+            Амурская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277339" name="region_regions_5277339" type="checkbox" value="region_regions_5277339"/>
+           <label for="region_regions_5277339" style="width: calc(100% - 50px) !important;">
+            Архангельская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277355" name="region_regions_5277355" type="checkbox" value="region_regions_5277355"/>
+           <label for="region_regions_5277355" style="width: calc(100% - 50px) !important;">
+            Астраханская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277409" name="region_regions_5277409" type="checkbox" value="region_regions_5277409"/>
+           <label for="region_regions_5277409" style="width: calc(100% - 50px) !important;">
+            Байконур г
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277363" name="region_regions_5277363" type="checkbox" value="region_regions_5277363"/>
+           <label for="region_regions_5277363" style="width: calc(100% - 50px) !important;">
+            Башкортостан Респ
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277318" name="region_regions_5277318" type="checkbox" value="region_regions_5277318"/>
+           <label for="region_regions_5277318" style="width: calc(100% - 50px) !important;">
+            Белгородская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277319" name="region_regions_5277319" type="checkbox" value="region_regions_5277319"/>
+           <label for="region_regions_5277319" style="width: calc(100% - 50px) !important;">
+            Брянская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277397" name="region_regions_5277397" type="checkbox" value="region_regions_5277397"/>
+           <label for="region_regions_5277397" style="width: calc(100% - 50px) !important;">
+            Бурятия Респ
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277320" name="region_regions_5277320" type="checkbox" value="region_regions_5277320"/>
+           <label for="region_regions_5277320" style="width: calc(100% - 50px) !important;">
+            Владимирская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277356" name="region_regions_5277356" type="checkbox" value="region_regions_5277356"/>
+           <label for="region_regions_5277356" style="width: calc(100% - 50px) !important;">
+            Волгоградская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277340" name="region_regions_5277340" type="checkbox" value="region_regions_5277340"/>
+           <label for="region_regions_5277340" style="width: calc(100% - 50px) !important;">
+            Вологодская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277321" name="region_regions_5277321" type="checkbox" value="region_regions_5277321"/>
+           <label for="region_regions_5277321" style="width: calc(100% - 50px) !important;">
+            Воронежская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277361" name="region_regions_5277361" type="checkbox" value="region_regions_5277361"/>
+           <label for="region_regions_5277361" style="width: calc(100% - 50px) !important;">
+            Дагестан Респ
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277407" name="region_regions_5277407" type="checkbox" value="region_regions_5277407"/>
+           <label for="region_regions_5277407" style="width: calc(100% - 50px) !important;">
+            Еврейская Аобл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277394" name="region_regions_5277394" type="checkbox" value="region_regions_5277394"/>
+           <label for="region_regions_5277394" style="width: calc(100% - 50px) !important;">
+            Забайкальский край
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277322" name="region_regions_5277322" type="checkbox" value="region_regions_5277322"/>
+           <label for="region_regions_5277322" style="width: calc(100% - 50px) !important;">
+            Ивановская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277350" name="region_regions_5277350" type="checkbox" value="region_regions_5277350"/>
+           <label for="region_regions_5277350" style="width: calc(100% - 50px) !important;">
+            Ингушетия Респ
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277389" name="region_regions_5277389" type="checkbox" value="region_regions_5277389"/>
+           <label for="region_regions_5277389" style="width: calc(100% - 50px) !important;">
+            Иркутская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277351" name="region_regions_5277351" type="checkbox" value="region_regions_5277351"/>
+           <label for="region_regions_5277351" style="width: calc(100% - 50px) !important;">
+            Кабардино-Балкарская Респ
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277341" name="region_regions_5277341" type="checkbox" value="region_regions_5277341"/>
+           <label for="region_regions_5277341" style="width: calc(100% - 50px) !important;">
+            Калининградская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277360" name="region_regions_5277360" type="checkbox" value="region_regions_5277360"/>
+           <label for="region_regions_5277360" style="width: calc(100% - 50px) !important;">
+            Калмыкия Респ
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277323" name="region_regions_5277323" type="checkbox" value="region_regions_5277323"/>
+           <label for="region_regions_5277323" style="width: calc(100% - 50px) !important;">
+            Калужская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277404" name="region_regions_5277404" type="checkbox" value="region_regions_5277404"/>
+           <label for="region_regions_5277404" style="width: calc(100% - 50px) !important;">
+            Камчатский край
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277352" name="region_regions_5277352" type="checkbox" value="region_regions_5277352"/>
+           <label for="region_regions_5277352" style="width: calc(100% - 50px) !important;">
+            Карачаево-Черкесская Респ
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277337" name="region_regions_5277337" type="checkbox" value="region_regions_5277337"/>
+           <label for="region_regions_5277337" style="width: calc(100% - 50px) !important;">
+            Карелия Респ
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277390" name="region_regions_5277390" type="checkbox" value="region_regions_5277390"/>
+           <label for="region_regions_5277390" style="width: calc(100% - 50px) !important;">
+            Кемеровская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277369" name="region_regions_5277369" type="checkbox" value="region_regions_5277369"/>
+           <label for="region_regions_5277369" style="width: calc(100% - 50px) !important;">
+            Кировская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277338" name="region_regions_5277338" type="checkbox" value="region_regions_5277338"/>
+           <label for="region_regions_5277338" style="width: calc(100% - 50px) !important;">
+            Коми Респ
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277324" name="region_regions_5277324" type="checkbox" value="region_regions_5277324"/>
+           <label for="region_regions_5277324" style="width: calc(100% - 50px) !important;">
+            Костромская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277353" name="region_regions_5277353" type="checkbox" value="region_regions_5277353"/>
+           <label for="region_regions_5277353" style="width: calc(100% - 50px) !important;">
+            Краснодарский край
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277398" name="region_regions_5277398" type="checkbox" value="region_regions_5277398"/>
+           <label for="region_regions_5277398" style="width: calc(100% - 50px) !important;">
+            Красноярский край
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_8408974" name="region_regions_8408974" type="checkbox" value="region_regions_8408974"/>
+           <label for="region_regions_8408974" style="width: calc(100% - 50px) !important;">
+            Крым Респ
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277378" name="region_regions_5277378" type="checkbox" value="region_regions_5277378"/>
+           <label for="region_regions_5277378" style="width: calc(100% - 50px) !important;">
+            Курганская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277325" name="region_regions_5277325" type="checkbox" value="region_regions_5277325"/>
+           <label for="region_regions_5277325" style="width: calc(100% - 50px) !important;">
+            Курская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277342" name="region_regions_5277342" type="checkbox" value="region_regions_5277342"/>
+           <label for="region_regions_5277342" style="width: calc(100% - 50px) !important;">
+            Ленинградская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277326" name="region_regions_5277326" type="checkbox" value="region_regions_5277326"/>
+           <label for="region_regions_5277326" style="width: calc(100% - 50px) !important;">
+            Липецкая обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277405" name="region_regions_5277405" type="checkbox" value="region_regions_5277405"/>
+           <label for="region_regions_5277405" style="width: calc(100% - 50px) !important;">
+            Магаданская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277364" name="region_regions_5277364" type="checkbox" value="region_regions_5277364"/>
+           <label for="region_regions_5277364" style="width: calc(100% - 50px) !important;">
+            Марий Эл Респ
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277365" name="region_regions_5277365" type="checkbox" value="region_regions_5277365"/>
+           <label for="region_regions_5277365" style="width: calc(100% - 50px) !important;">
+            Мордовия Респ
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277335" name="region_regions_5277335" type="checkbox" value="region_regions_5277335"/>
+           <label for="region_regions_5277335" style="width: calc(100% - 50px) !important;">
+            Москва
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277327" name="region_regions_5277327" type="checkbox" value="region_regions_5277327"/>
+           <label for="region_regions_5277327" style="width: calc(100% - 50px) !important;">
+            Московская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277343" name="region_regions_5277343" type="checkbox" value="region_regions_5277343"/>
+           <label for="region_regions_5277343" style="width: calc(100% - 50px) !important;">
+            Мурманская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277345" name="region_regions_5277345" type="checkbox" value="region_regions_5277345"/>
+           <label for="region_regions_5277345" style="width: calc(100% - 50px) !important;">
+            Ненецкий АО
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277370" name="region_regions_5277370" type="checkbox" value="region_regions_5277370"/>
+           <label for="region_regions_5277370" style="width: calc(100% - 50px) !important;">
+            Нижегородская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277346" name="region_regions_5277346" type="checkbox" value="region_regions_5277346"/>
+           <label for="region_regions_5277346" style="width: calc(100% - 50px) !important;">
+            Новгородская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277391" name="region_regions_5277391" type="checkbox" value="region_regions_5277391"/>
+           <label for="region_regions_5277391" style="width: calc(100% - 50px) !important;">
+            Новосибирская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277392" name="region_regions_5277392" type="checkbox" value="region_regions_5277392"/>
+           <label for="region_regions_5277392" style="width: calc(100% - 50px) !important;">
+            Омская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277371" name="region_regions_5277371" type="checkbox" value="region_regions_5277371"/>
+           <label for="region_regions_5277371" style="width: calc(100% - 50px) !important;">
+            Оренбургская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277328" name="region_regions_5277328" type="checkbox" value="region_regions_5277328"/>
+           <label for="region_regions_5277328" style="width: calc(100% - 50px) !important;">
+            Орловская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277372" name="region_regions_5277372" type="checkbox" value="region_regions_5277372"/>
+           <label for="region_regions_5277372" style="width: calc(100% - 50px) !important;">
+            Пензенская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277373" name="region_regions_5277373" type="checkbox" value="region_regions_5277373"/>
+           <label for="region_regions_5277373" style="width: calc(100% - 50px) !important;">
+            Пермский край
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277401" name="region_regions_5277401" type="checkbox" value="region_regions_5277401"/>
+           <label for="region_regions_5277401" style="width: calc(100% - 50px) !important;">
+            Приморский край
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277344" name="region_regions_5277344" type="checkbox" value="region_regions_5277344"/>
+           <label for="region_regions_5277344" style="width: calc(100% - 50px) !important;">
+            Псковская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277357" name="region_regions_5277357" type="checkbox" value="region_regions_5277357"/>
+           <label for="region_regions_5277357" style="width: calc(100% - 50px) !important;">
+            Ростовская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277329" name="region_regions_5277329" type="checkbox" value="region_regions_5277329"/>
+           <label for="region_regions_5277329" style="width: calc(100% - 50px) !important;">
+            Рязанская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277374" name="region_regions_5277374" type="checkbox" value="region_regions_5277374"/>
+           <label for="region_regions_5277374" style="width: calc(100% - 50px) !important;">
+            Самарская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277347" name="region_regions_5277347" type="checkbox" value="region_regions_5277347"/>
+           <label for="region_regions_5277347" style="width: calc(100% - 50px) !important;">
+            Санкт-Петербург
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277375" name="region_regions_5277375" type="checkbox" value="region_regions_5277375"/>
+           <label for="region_regions_5277375" style="width: calc(100% - 50px) !important;">
+            Саратовская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277400" name="region_regions_5277400" type="checkbox" value="region_regions_5277400"/>
+           <label for="region_regions_5277400" style="width: calc(100% - 50px) !important;">
+            Саха /Якутия/ Респ
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277406" name="region_regions_5277406" type="checkbox" value="region_regions_5277406"/>
+           <label for="region_regions_5277406" style="width: calc(100% - 50px) !important;">
+            Сахалинская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277383" name="region_regions_5277383" type="checkbox" value="region_regions_5277383"/>
+           <label for="region_regions_5277383" style="width: calc(100% - 50px) !important;">
+            Свердловская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_8408975" name="region_regions_8408975" type="checkbox" value="region_regions_8408975"/>
+           <label for="region_regions_8408975" style="width: calc(100% - 50px) !important;">
+            Севастополь г
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277359" name="region_regions_5277359" type="checkbox" value="region_regions_5277359"/>
+           <label for="region_regions_5277359" style="width: calc(100% - 50px) !important;">
+            Северная Осетия - Алания Респ
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277330" name="region_regions_5277330" type="checkbox" value="region_regions_5277330"/>
+           <label for="region_regions_5277330" style="width: calc(100% - 50px) !important;">
+            Смоленская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277354" name="region_regions_5277354" type="checkbox" value="region_regions_5277354"/>
+           <label for="region_regions_5277354" style="width: calc(100% - 50px) !important;">
+            Ставропольский край
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277331" name="region_regions_5277331" type="checkbox" value="region_regions_5277331"/>
+           <label for="region_regions_5277331" style="width: calc(100% - 50px) !important;">
+            Тамбовская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277366" name="region_regions_5277366" type="checkbox" value="region_regions_5277366"/>
+           <label for="region_regions_5277366" style="width: calc(100% - 50px) !important;">
+            Татарстан Респ
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277332" name="region_regions_5277332" type="checkbox" value="region_regions_5277332"/>
+           <label for="region_regions_5277332" style="width: calc(100% - 50px) !important;">
+            Тверская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277393" name="region_regions_5277393" type="checkbox" value="region_regions_5277393"/>
+           <label for="region_regions_5277393" style="width: calc(100% - 50px) !important;">
+            Томская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277333" name="region_regions_5277333" type="checkbox" value="region_regions_5277333"/>
+           <label for="region_regions_5277333" style="width: calc(100% - 50px) !important;">
+            Тульская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277386" name="region_regions_5277386" type="checkbox" value="region_regions_5277386"/>
+           <label for="region_regions_5277386" style="width: calc(100% - 50px) !important;">
+            Тыва Респ
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277379" name="region_regions_5277379" type="checkbox" value="region_regions_5277379"/>
+           <label for="region_regions_5277379" style="width: calc(100% - 50px) !important;">
+            Тюменская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277367" name="region_regions_5277367" type="checkbox" value="region_regions_5277367"/>
+           <label for="region_regions_5277367" style="width: calc(100% - 50px) !important;">
+            Удмуртская Респ
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277376" name="region_regions_5277376" type="checkbox" value="region_regions_5277376"/>
+           <label for="region_regions_5277376" style="width: calc(100% - 50px) !important;">
+            Ульяновская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277402" name="region_regions_5277402" type="checkbox" value="region_regions_5277402"/>
+           <label for="region_regions_5277402" style="width: calc(100% - 50px) !important;">
+            Хабаровский край
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277387" name="region_regions_5277387" type="checkbox" value="region_regions_5277387"/>
+           <label for="region_regions_5277387" style="width: calc(100% - 50px) !important;">
+            Хакасия Респ
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277381" name="region_regions_5277381" type="checkbox" value="region_regions_5277381"/>
+           <label for="region_regions_5277381" style="width: calc(100% - 50px) !important;">
+            Ханты-Мансийский Автономный округ - Югра АО
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277380" name="region_regions_5277380" type="checkbox" value="region_regions_5277380"/>
+           <label for="region_regions_5277380" style="width: calc(100% - 50px) !important;">
+            Челябинская обл
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277358" name="region_regions_5277358" type="checkbox" value="region_regions_5277358"/>
+           <label for="region_regions_5277358" style="width: calc(100% - 50px) !important;">
+            Чеченская Респ
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277368" name="region_regions_5277368" type="checkbox" value="region_regions_5277368"/>
+           <label for="region_regions_5277368" style="width: calc(100% - 50px) !important;">
+            Чувашская Республика - Чувашия
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277408" name="region_regions_5277408" type="checkbox" value="region_regions_5277408"/>
+           <label for="region_regions_5277408" style="width: calc(100% - 50px) !important;">
+            Чукотский АО
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277382" name="region_regions_5277382" type="checkbox" value="region_regions_5277382"/>
+           <label for="region_regions_5277382" style="width: calc(100% - 50px) !important;">
+            Ямало-Ненецкий АО
+           </label>
+          </label>
+         </li>
+         <li>
+          <label class="customCheckbox">
+           <input class="checkbox-item" id="region_regions_5277334" name="region_regions_5277334" type="checkbox" value="region_regions_5277334"/>
+           <label for="region_regions_5277334" style="width: calc(100% - 50px) !important;">
+            Ярославская обл
+           </label>
+          </label>
+         </li>
+        </ul>
+       </div>
+       <div class="msButtonIn" id="regionsSelectBtn">
+        <span class="btnBtn blueBtn">
+         Выбрать
+        </span>
+       </div>
+      </div>
+     </div>
+     <input id="regions" name="regions" type="hidden" value=""/>
+     <input id="regionDeleted" name="regionDeleted" type="hidden" value="false"/>
+    </li>
+    <script type="text/javascript">
+     $(document).ready(function () {
+            $("#regionsTag").on("setDefaultValues", function () {
+                $("#regionsTagDataContainer :checkbox").prop("checked", false);
+                setManySelectPlaceholderText("regionsSelectBtn");
+                $('#regions').val('');
+            });
+
+            
+            $("#regionsTag").bind("districtsEvent", function (e, data) {
+                _regionsChangeRegionsByDistricts(data.districtsList);
+            });
+            
+
+            $("#regionsSelectBtn").click(function (e) {
+                setHiddenValue($("div.regionsExpanded input:checked"), $("#regions"), 8 + 7);
+                _regionsDispathEvent(e);
+            });
+            setManySelectPlaceholderText("regionsSelectBtn");
+            setHiddenValue($("div.regionsExpanded input:checked"), $("#regions"), 8 + 7);
+
+            $('li#regionsTag input[type=checkbox]').on("delete", function (event) {
+                this.removeAttribute("checked");
+                var regionId = $(this).attr('id').substr(8 + 7);
+                var userRegionId = $.cookie("userRegionId");
+                var doNotUseRegionToFind = $.cookie("doNotUseRegionToFind");
+                if (regionId == userRegionId && doNotUseRegionToFind == 'false') {
+                    $("#regionDeleted").val("true");
+                }
+                $('#regions').val($('#regions').val().replace(regionId, ""));
+            });
+
+            $("#regionsTagDataContainer li").on('click', function () {
+                var $this = $(this);
+                choiceRestriction($this);
+                var inputJqr = $(this).find("input:checkbox");
+                if (inputJqr.attr("id") === "region_regions_not_selected") {
+                    _regionsClearRegionsChecked();
+                } else {
+                    _regionsAddHiddenValueOnChecked($this);
+                }
+                _regionsRefreshPlaceholder($this);
+            });
+        }
+    );
+
+    function _regionsAddHiddenValueOnChecked($this) {
+        $("#region_regions_not_selected").removeAttr("checked");
+        var selectedListJqr = _regionsGetCheckedListJqr($this)
+        setHiddenValue(selectedListJqr, $("#regions"), 8 + 7);
+    }
+
+    function _regionsClearRegionsChecked() {
+        $("div.regionsExpanded input:checked")
+            .not("#region_regions_not_selected")
+            .removeAttr("checked");
+        setHiddenValue($([]), $("#regions"), 8 + 7);
+    }
+
+    function _regionsRefreshPlaceholder($this) {
+        var checkedInputs = _regionsGetCheckedListJqr($this);
+        var inputLabel = _buildInputLabel(checkedInputs);
+        var placeholderJqr = $("#regionsTag span.msPlaceholder");
+        var placeholderText = placeholderJqr.data("initial");
+        if (inputLabel == '') {
+            placeholderJqr.text(placeholderText);
+        } else {
+            placeholderJqr.text(inputLabel);
+        }
+    }
+
+    function _regionsGetCheckedListJqr($this) {
+        
+        var thisItemJqr = $this.find("input");
+        var checkedInputs =
+            $("#regionsTag div.expanded input:checked:enabled").not(".not-selected-many-select-item");
+        if (thisItemJqr.prop("checked")) {
+            var thisItemId = thisItemJqr.attr("id");
+            return checkedInputs.not("#" + thisItemId);
+        } else {
+            return checkedInputs.add(thisItemJqr);
+        }
+    }
+
+    function _regionsChangeRegionsByDistricts(districtsList) {
+        var ajaxUrl = '/epz/orderplan/tagupdate.html?dtoClass=&districts=' + districtsList;
+        $.ajax({
+            url: ajaxUrl,
+            dataType: 'html',
+            success: function (html) {
+                var containerSelector = "#regionsTagDataContainer";
+                var liData = $(html).find(containerSelector + " li");
+                $(containerSelector).html(liData);
+                setManySelectPlaceholderText("regionsSelectBtn");
+                $("#" + "regions").val("");
+                _regionsDispathEvent();
+
+                if (districtsList.length === 0) {
+                    var $dataBlock = $("#regionsTagDataContainer");
+                }
+                $("#regionsTagDataContainer" + ' :checkbox').on('click', function () {
+                    if ($dataBlock.find(':checked').size() > 5) {
+                        this.checked = false;
+                        alertMsBox("Возможно выбрать только 5 значений для поиска")
+                    }
+                });
+
+            }
+        });
+    }
+
+    function _regionsDispathEvent(e) {
+        var checked = $("div.regionsExpanded input:checked");
+        var outputValues = _createDropDownChecksValues(checked, 8 + 7);
+        $('#searchOptionsEditContainer .regionsEventListener').each(function () {
+            $(this).trigger("regionsEvent", {regionsList: outputValues});
+        });
+    }
+
+    function choiceRestriction($this) {
+        var $dataBlock = $("#regionsTagDataContainer");
+        var checkedCount = $dataBlock.find("input[type='checkbox']:checked").not(".not-selected-many-select-item").size();
+        var currentCheckBoxValue = $this.find("input[type='checkbox']").prop("checked");
+        var isRegionItem = $this.find(".not-selected-many-select-item").size() == 0;
+        if (checkedCount >= 5 && !currentCheckBoxValue && isRegionItem) {
+            $this.find("input[type='checkbox']").prop("checked", true);
+            alertMsBox("Возможно выбрать только 5 значений для поиска");
+        }
+    }
+    </script>
+    <script type="text/javascript">
+     $(document).ready(function () {
+        $("#actualPeriodTag").on("setDefaultValues", function () {
+            $("#" + "actualPeriodStart").prop("value", "01.01.2019");
+            $("#" + "actualPeriodEnd").prop("value", "31.12.2019");
+            $("#" + "actualPeriodStart").removeClass("customInvalid");
+            $("#" + "actualPeriodEnd").removeClass("customInvalid");
+            $("#threeMonthsLeft").prop("checked", false);
+        });
+
+        $("#actualPeriodTag input[type='text']").on("delete", function (event) {
+            
+                
+                
+                    $("#" + "actualPeriodTag" + " input[type='text']").val("");
+                
+            
+        });
+    });
+    </script>
+    <li class="" id="actualPeriodTag">
+     <label class="vAlignTop">
+      Период действия плана-графика (плана закупки):
+     </label>
+     <div class="inlineBlock width630 errorContainer">
+      <span class="padRight12">
+       с
+      </span>
+      <input class="size110 height30 datepicker_ru margRight10" data-validate='{"required": "false", "validDate": "true"}' data-validate_message='{"validDate": "Неправильная дата начала"}' id="actualPeriodStart" name="actualPeriodStart" placeholder="Дата начала" title="Дата начала" type="text" value="01.01.2019">
+       <span class="padRight12">
+        по
+       </span>
+       <input class="size110 height30 datepicker_ru margRight10" data-validate='{"required": "false", "validDate": "true", "validPeriod": "#actualPeriodStart"}' data-validate_message='{"validDate": "Неправильная дата окончания", "validPeriod": "Дата начала периода должна быть меньше даты окончания периода"}' id="actualPeriodEnd" name="actualPeriodEnd" placeholder="Дата окончания" title="Дата окончания" type="text" value="31.12.2019">
+       </input>
+      </input>
+     </div>
+    </li>
+    <li class="fz44_tag search_tag struct_tag plan_graph_tag" id="passingOfControlTypes">
+     <label class="vAlignTop">
+      Контроль по ч.5 ст.99 44-ФЗ:
+     </label>
+     <ul class="lowList passingOfControlTypesUl">
+      <li class="customCheckbox vAlignTop passingOfControlTypesLi">
+       <input class="PassingOfControl" id="controlPassed" name="controlPassed" type="checkbox"/>
+       <label class="passingOfControlTypesLabel" for="controlPassed">
+        Контроль пройден
+       </label>
+      </li>
+      <li class="customCheckbox vAlignTop passingOfControlTypesLi">
+       <input class="PassingOfControl" id="controlNotPassed" name="controlNotPassed" type="checkbox"/>
+       <label class="passingOfControlTypesLabel" for="controlNotPassed">
+        Контроль не пройден
+       </label>
+      </li>
+     </ul>
+    </li>
+    <script>
+     $(document).ready(function () {
+        $('#passingOfControlTypes').on('setDefaultValues',function () {
+            $('#controlPassed').prop('checked', false);
+            $('#controlNotPassed').prop('checked', false);
+        });
+        $('.PassingOfControl').on('delete',function () {
+            _removeCheckVal($(this));
+        });
+    });
+    </script>
+    <script type="text/javascript">
+     $(document).ready(function () {
+        $("#publishDateTag").on("setDefaultValues", function () {
+            $("#" + "publishDateFrom").prop("value", "");
+            $("#" + "publishDateTo").prop("value", "");
+            $("#" + "publishDateFrom").removeClass("customInvalid");
+            $("#" + "publishDateTo").removeClass("customInvalid");
+            $("#threeMonthsLeft").prop("checked", false);
+        });
+
+        $("#publishDateTag input[type='text']").on("delete", function (event) {
+            
+                
+                
+                    $("#" + "publishDateTag" + " input[type='text']").val("");
+                
+            
+        });
+    });
+    </script>
+    <li class="" id="publishDateTag">
+     <label class="vAlignTop">
+      Дата размещения плана-графика (плана закупки):
+     </label>
+     <div class="inlineBlock width630 errorContainer">
+      <span class="padRight12">
+       с
+      </span>
+      <input class="size110 height30 datepicker_ru margRight10" data-validate='{"required": "false", "validDate": "true"}' data-validate_message='{"validDate": "Неправильная дата начала"}' id="publishDateFrom" name="publishDateFrom" placeholder="Дата начала" title="Дата начала" type="text" value=""/>
+      <span class="padRight12">
+       по
+      </span>
+      <input class="size110 height30 datepicker_ru margRight10" data-validate='{"required": "false", "validDate": "true", "validPeriod": "#publishDateFrom"}' data-validate_message='{"validDate": "Неправильная дата окончания", "validPeriod": "Дата начала периода должна быть меньше даты окончания периода"}' id="publishDateTo" name="publishDateTo" placeholder="Дата окончания" title="Дата окончания" type="text" value=""/>
+     </div>
+    </li>
+    <input name="sortBy" type="hidden" value="BY_MODIFY_DATE"/>
+    <input id="pageNumber" name="pageNumber" type="hidden" value="1"/>
+    <input name="sortDirection" type="hidden" value="false"/>
+    <input name="recordsPerPage" type="hidden" value="_10"/>
+   </ul>
+  </div>
+  <div class="darkGreyBox" id="searchButtonsBlock">
+   <div class="floatRight">
+    <span class="clearAll" id="setDefValue">
+     <em>
+      Очистить все
+     </em>
+    </span>
+    <span class="bigOrangeBtn margLeft20" onclick="submitQuickSearchForm();">
+     уточнить результаты
+    </span>
+   </div>
+  </div>
+ </div>
+</form>
+<script type="text/javascript">
+ $(document).ready(function () {
+        var bannersBlockSvg = document.getElementById("bannersBlockSvg");
+        var line = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        line.setAttribute("fill-opacity", "0");
+        line.setAttribute("stroke", "#018ccd");
+        line.setAttribute("stroke-width", "2");
+        if (bannersBlockSvg)
+            bannersBlockSvg.appendChild(line);
+
+        if ($(".bannersMainBlock div.currentTab").parent().index() == 0) {
+            // line.setAttribute("d", "M 1 75 L 1 10 C 1 10 1 1  10 1 L 200 1 C 200 1 210 1 210 10 L 210 65 C 210 65 210 75 220 75 L 910 75");
+            $(".bannersMainBlock div.currentTab img").attr('src', '/epz/orderplan/images/convert_open_blue.png');
+        } else if ($(".bannersMainBlock div.currentTab").parent().index() == 1) {
+            // line.setAttribute("d", "M 1 75 L 450 75 C 450 75 460 75  460 65 L 460 10 C 460 10 460 1 470 1 L 660 1 C 660 1 670 1 670 10 L 670 65 C 670 65 670 75 680 75 L 910 75");
+            $(".bannersMainBlock div.currentTab img").attr('src', '/epz/orderplan/images/calendar_check_blue.png');
+        } else if ($(".bannersMainBlock div.currentTab").parent().index() == 2) {
+            // line.setAttribute("d", "M 1 75 L 230 75 C 230 75 240 75  240 65 L 240 10 C 240 10 240 1 250 1 L 430 1 C 430 1 440 1 440 10 L 440 65 C 440 65 440 75 450 75 L 910 75");
+            $(".bannersMainBlock div.currentTab img").attr('src', '/epz/orderplan/images/bell_rings_blue.png');
+        } else if ($(".bannersMainBlock div.currentTab").parent().index() == 3) {
+            // line.setAttribute("d", "M 1 75 L 680 75 C 680 75 690 75  690 65 L 690 10 C 690 10 690 1 700 1 L 890 1 C 890 1 900 1 900 10 L 900 75");
+            $(".bannersMainBlock div.currentTab img").attr('src', '/epz/orderplan/images/shield_blue.png');
+        }
+
+        var tittleText = $("ul.tuningQuickSearchList .currentSetting").text();
+        if (tittleText != "") {
+            $("div.tuningQuickSearchBlock .pseudoInput").removeClass("greyText").text(tittleText);
+        }
+        
+
+        var ulContainer = $("#searchOptionsViewContainer");
+
+        if (ulContainer[0].childElementCount == 1) {
+            ulContainer.append("<li><label>Параметры поиска не установлены<label/><li/>");
+        }
+    });
+</script>
+<script src="/epz/orderplan/js/tiny_url.js" type="text/javascript">
+</script>
+<script src="/epz/orderplan/js/mustache.min.js" type="text/javascript">
+</script>
+<script src="/epz/orderplan/js/extendedSearchForm.js" type="text/javascript">
+</script>
+<style>
+ .paginator .greyBox {
+        border-radius: 0px;
+        background-color: transparent;
+        padding: 0px;
+        display: inline-block;
+     width: 50%;
+    
+    }
+
+    .paginator .greyBox .paging {
+        width: 100%;
+    }
+</style>
+<div class="parametrs margBtm10 planGraphResults">
+ <div class="sortBy">
+  <ul class="displayInlineBlock">
+   <li class="displayNonePoor">
+    Показывать по:
+   </li>
+   <li class="pageSelect">
+    <el class="displayNoneUsual">
+     Показывать по:
+    </el>
+    <span class="">
+     <i>
+      10
+     </i>
+    </span>
+    <ul>
+     <li id="_10">
+      10
+     </li>
+     <li id="_20">
+      20
+     </li>
+     <li id="_50">
+      50
+     </li>
+    </ul>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    Сортировать по:
+   </li>
+   <li class="sortItem activeSort" type="BY_MODIFY_DATE">
+    <span>
+     Дате обновления
+    </span>
+   </li>
+   <li class="sortItem" type="BY_PUBLISH_DATE">
+    <span>
+     Дате размещения
+    </span>
+   </li>
+   <li class="sortItem" type="BY_PERIOD">
+    <span>
+     Периоду действия плана
+    </span>
+   </li>
+  </ul>
+ </div>
+ <div class="paginator greyBox extendedVariant margBtm20">
+  <a class="rssBox margTop0" href="javascript:void(0)" onclick="rssSubscribe('/epz/orderplan/quicksearch/rss.html?searchString=sdf', 0)" title="Подписаться на RSS-ленту">
+   rss
+  </a>
+  <div class="paginator greyBox">
+   <p class="allRecords">
+    Всего записей:
+    <strong>
+     1
+    </strong>
+   </p>
+   <div class="clear">
+   </div>
+  </div>
+  <label class="customCheckbox floatLeft">
+   <input disabled="disabled" id="expandAll" onclick="toggleDataExpand(this.checked);" type="checkbox" value="0">
+    <label for="expandAll" style="padding: 0px;">
+     Развернуть информацию о позициях в результатах поиска
+    </label>
+   </input>
+  </label>
+  <div class="clear">
+  </div>
+ </div>
+ <div class="registerBox registerBoxBank margBtm20">
+  <div class="boxIcons displayNonePoor">
+   <a class="cryptoSignLink pWidth_840 linkPopUp" href="/epz/orderplan/signview/list.html?printFormId=3642936&amp;source=fz223">
+   </a>
+   <a class="printLink" href="http://zakupki.gov.ru/223/plan/public/plan-info/print-form/show-with-paging.html?planInfoId=3503219&amp;page=1" onclick="window.open(this.href); return false;" target="_blank">
+   </a>
+  </div>
+  <table cellpadding="0" cellspacing="0">
+   <tr>
+    <td class="tenderTd">
+     <dl>
+      <dt class="status-field">
+       <span class="status-icon status-appointed">
+       </span>
+       Утвержден
+      </dt>
+      <dd class="orange padLeft0">
+       Cтруктурированный
+      </dd>
+      <dd class="padLeft0">
+       223-ФЗ
+      </dd>
+     </dl>
+    </td>
+    <td class="descriptTenderTd">
+     <dl>
+      <dt>
+       <a href="http://zakupki.gov.ru/223/plan/public/plan/info/actual-common-info.html?planId=445030&amp;planInfoId=3503219&amp;epz=true&amp;style44=false" target="_blank">
+        №2180313447
+       </a>
+      </dt>
+      <dd class="padBtm5">
+       <a class="uppercaseNone" href="http://zakupki.gov.ru/223/ppa/public/organization/organization.html?agencyId=8978&amp;epz=true&amp;style44=false" onclick="window.open(this.href); return false;" target="_blank" title='ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "НОВО-САЛАВАТСКАЯ ТЭЦ"'>
+        ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "НОВО-САЛАВАТСКАЯ ТЭЦ"
+       </a>
+      </dd>
+      <dd class="margTop5 greyText">
+       <ul>
+        <li>
+         Период действия плана:
+         <span class="baseColor">
+          с 01.01.2019
+                                                    по 31.12.2019
+         </span>
+        </li>
+        <br/>
+        <li>
+         Наименование плана:
+         <span class="baseColor">
+          План закупки товаров (работ, услуг)
+                                                        ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "НОВО-САЛАВАТСКАЯ ТЭЦ"
+                                                        2019
+         </span>
+        </li>
+        <br/>
+       </ul>
+      </dd>
+     </dl>
+    </td>
+    <td class="amountTenderTd">
+     <ul>
+      <li>
+       <label>
+        Размещено:
+       </label>
+       07.12.2018
+      </li>
+      <li>
+       <label>
+        Обновлено:
+       </label>
+       10.09.2019
+      </li>
+     </ul>
+    </td>
+   </tr>
+  </table>
+  <div class="reportBox">
+   <ul>
+    <li>
+     <a href="http://zakupki.gov.ru/223/plan/public/plan/info/actual-common-info.html?planId=445030&amp;planInfoId=3503219&amp;epz=true&amp;style44=false" target="_blank">
+      Сведения
+     </a>
+    </li>
+    <li>
+     <a href="http://zakupki.gov.ru/223/plan/public/plan/info/actual-documents.html?planId=445030&amp;planInfoId=3503219&amp;versioned=&amp;activeTab=1&amp;epz=true&amp;style44=false" target="_blank">
+      Документы
+     </a>
+    </li>
+    <li>
+     <a href="http://zakupki.gov.ru/223/plan/public/plan/info/actual-changes.html?planId=445030&amp;activeTab=2&amp;planInfoId=3503219&amp;epz=true&amp;style44=false" target="_blank">
+      Изменения
+     </a>
+    </li>
+   </ul>
+  </div>
+ </div>
+ <div class="margBtm50">
+  <div class="paginator greyBox">
+   <p class="allRecords">
+    Всего записей:
+    <strong>
+     1
+    </strong>
+   </p>
+   <div class="clear">
+   </div>
+  </div>
+ </div>
+</div>
+<div class="clear">
+</div>
+<script type="text/javascript">
+ function toggleDataExpand(value) {
+        if (value) {
+            $('td.lotsInfo p').not('.expandP').trigger('click');
+        } else {
+            $('td.lotsInfo p.expandP').trigger('click');
+        }
+    }
+</script>
+<footer class="footer">
+ <div class="wrapperFooter">
+  <div class="container">
+   <div class="poll-banner">
+    <div class="row align-items-center">
+     <div class="col-9">
+      <div class="figure-footer d-flex align-items-center">
+       <div class="figure-footer__icon">
+        <img alt="" class="icon" src="/epz/orderplan/img/icons/ico_sub.svg"/>
+       </div>
+       <div class="figure-footer__text">
+        <h4 class="heading-h4 poll-title">
+         Поделитесь мнением о качестве работы единой
+                                                информационной системы
+        </h4>
+       </div>
+      </div>
+     </div>
+     <div class="col-3 text-right">
+      <a class="btn btn-default poll-button" href="/epz/main/public/quiz/list.html">
+       <span class="separator">
+       </span>
+       <span class="btn-text">
+        Перейти к опросу
+       </span>
+      </a>
+     </div>
+    </div>
+    <figure class="poll__logo">
+     <img alt="" src="/epz/orderplan/img/icons/icon-footer-eagle.svg"/>
+    </figure>
+   </div>
+  </div>
+  <div class="container">
+   <div class="partners-wrap">
+    <div class="partners partners-slider">
+     <figure class="partner">
+      <p class="partner-logo-wrap">
+       <a href="http://www.sberbank-ast.ru/" target="_blank">
+        <img alt="" class="partner__logo" src="/epz/orderplan/img/partners/sberbank.svg"/>
+       </a>
+      </p>
+      <figcaption class="partner__desc">
+       Система торгов
+       <br/>
+       Сбербанк-АСТ
+      </figcaption>
+      <a class="partner__link" href="http://www.sberbank-ast.ru/" target="_blank">
+       sberbank-ast.ru
+      </a>
+     </figure>
+     <figure class="partner">
+      <p class="partner-logo-wrap">
+       <a href="http://www.roseltorg.ru/" target="_blank">
+        <img alt="" class="partner__logo" src="/epz/orderplan/img/partners/rostorg.svg"/>
+       </a>
+      </p>
+      <figcaption class="partner__desc">
+       Единая электронная торговая
+       <br/>
+       площадка
+      </figcaption>
+      <a class="partner__link" href="http://www.roseltorg.ru/" target="_blank">
+       roseltorg.ru
+      </a>
+     </figure>
+     <figure class="partner">
+      <p class="partner-logo-wrap">
+       <a href="http://etp.zakazrf.ru/" target="_blank">
+        <img alt="" class="partner__logo" src="/epz/orderplan/img/partners/etp.svg"/>
+       </a>
+      </p>
+      <figcaption class="partner__desc">
+       Общероссийская система
+       <br/>
+       электронной торговли
+      </figcaption>
+      <a class="partner__link" href="http://etp.zakazrf.ru/" target="_blank">
+       etp.zakazrf.ru
+      </a>
+     </figure>
+     <figure class="partner">
+      <p class="partner-logo-wrap">
+       <a href="http://www.rts-tender.ru/" target="_blank">
+        <img alt="" class="partner__logo" src="/epz/orderplan/img/partners/rts.svg"/>
+       </a>
+      </p>
+      <figcaption class="partner__desc">
+       Электронная площадка
+       <br/>
+       России
+      </figcaption>
+      <a class="partner__link" href="http://www.rts-tender.ru/" target="_blank">
+       rts-tender.ru
+      </a>
+     </figure>
+     <figure class="partner">
+      <p class="partner-logo-wrap">
+       <a href="http://etp-ets.ru/" target="_blank">
+        <img alt="" class="partner__logo" src="/epz/orderplan/img/partners/ets.svg"/>
+       </a>
+      </p>
+      <figcaption class="partner__desc">
+       Национальная электронная
+       <br/>
+       площадка
+      </figcaption>
+      <a class="partner__link" href="http://etp-ets.ru/" target="_blank">
+       etp-ets.ru
+      </a>
+     </figure>
+     <figure class="partner">
+      <p class="partner-logo-wrap">
+       <a href="https://gz.lot-online.ru" target="_blank">
+        <img alt="" class="partner__logo" src="/epz/orderplan/img/partners/newGZ.svg"/>
+       </a>
+      </p>
+      <figcaption class="partner__desc">
+       Всероссийская
+       <br/>
+       универсальная площадка
+      </figcaption>
+      <a class="partner__link" href="https://gz.lot-online.ru" target="_blank">
+       gz.lot-online.ru
+      </a>
+     </figure>
+     <figure class="partner">
+      <p class="partner-logo-wrap">
+       <a href="https://www.tektorg.ru/" target="_blank">
+        <img alt="" class="partner__logo" src="/epz/orderplan/img/partners/tektorg_new.svg"/>
+       </a>
+      </p>
+      <figcaption class="partner__desc">
+       Федеральная электронная
+       <br>
+        площадка ТЭК-Торг
+       </br>
+      </figcaption>
+      <a class="partner__link" href="https://www.tektorg.ru/" target="_blank">
+       tektorg.ru
+      </a>
+     </figure>
+     <figure class="partner">
+      <p class="partner-logo-wrap">
+       <a href="https://etpgpb.ru/" target="_blank">
+        <img alt="" class="partner__logo" src="/epz/orderplan/img/partners/etpgpb.svg"/>
+       </a>
+      </p>
+      <figcaption class="partner__desc">
+       Электронная торговая
+       <br>
+        площадка ГПБ
+       </br>
+      </figcaption>
+      <a class="partner__link" href="https://etpgpb.ru/" target="_blank">
+       etpgpb.ru
+      </a>
+     </figure>
+     <figure class="partner">
+      <p class="partner-logo-wrap">
+       <a href="http://www.astgoz.ru/" target="_blank">
+        <img alt="" class="partner__logo" src="/epz/orderplan/img/partners/astgoz.svg"/>
+       </a>
+      </p>
+      <figcaption class="partner__desc">
+       Автоматизированная система торгов государственного
+                                    оборонного
+                                    заказа
+       <br/>
+      </figcaption>
+      <a class="partner__link" href="http://www.astgoz.ru/" target="_blank">
+       astgoz.ru
+      </a>
+     </figure>
+    </div>
+    <span class="partners-slider__btn partners-slider__btn_prev">
+     <img alt="" src="/epz/orderplan/img/icons/arrow_blue.svg"/>
+    </span>
+    <span class="partners-slider__btn partners-slider__btn_next">
+     <img alt="" src="/epz/orderplan/img/icons/arrow_blue.svg"/>
+    </span>
+   </div>
+  </div>
+  <section class="footer-nav">
+   <div class="container">
+    <div class="row">
+     <div class="col-md-12 col-lg-12">
+      <ul class="footer-nav-list">
+       <li class="footer-nav__item">
+        <a class="footer-nav__link" href="/epz/main/public/news/news-search.html">
+         Новости
+        </a>
+       </li>
+       <li class="footer-nav__item">
+        <a class="footer-nav__link" href="/epz/main/public/forSuppliers.html">
+         Поставщикам
+        </a>
+       </li>
+       <li class="footer-nav__item">
+        <a class="footer-nav__link" href="/epz/main/public/forCustomers.html">
+         Заказчикам
+        </a>
+       </li>
+       <li class="footer-nav__item">
+        <a class="footer-nav__link" href="/epz/main/public/quiz/list.html">
+         Опросы
+        </a>
+       </li>
+       <li class="footer-nav__item">
+        <a class="footer-nav__link" href="/epz/main/public/home.html#statAnchor">
+         Статистика
+        </a>
+       </li>
+       <li class="footer-nav__item">
+        <a class="footer-nav__link" href="http://zakupki.gov.ru/forum/forums/list.page" target="_blank">
+         Форум
+        </a>
+       </li>
+       <li class="footer-nav__item">
+        <a class="footer-nav__link" data-modalup="" href="/epz/main/public/siteMap.html">
+         Карта сайта
+        </a>
+       </li>
+       <li class="footer-nav__item">
+        <a class="footer-nav__link" href="http://zakupki.gov.ru/rpt/cat02/zakupki-traffic.xlsx">
+         Отчет о посещаемости
+        </a>
+       </li>
+       <li class="footer-nav__item">
+        <a class="footer-nav__link" href="/epz/main/public/qa/view.html">
+         Часто задаваемые вопросы
+        </a>
+       </li>
+      </ul>
+     </div>
+    </div>
+   </div>
+  </section>
+  <section class="footer-links">
+   <div class="container">
+    <div class="row">
+     <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+      <figure class="logo">
+       <img alt="" class="logo__img" src="/epz/orderplan/img/header/emblem.svg"/>
+       <figcaption class="logo__name">
+        Единая информационная система
+        <br/>
+        в сфере закупок
+       </figcaption>
+      </figure>
+      <div class="copyright">
+       <small class="copyright__text">
+        © Федеральное казначейство, 2019
+       </small>
+       <small class="copyright__text">
+        Версия 9.2.8.1 rev 352fe1b000 от 09.09.2019
+       </small>
+      </div>
+     </div>
+     <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+      <nav class="usefull-links">
+       <span class="list-title">
+        Официальные ресурсы
+       </span>
+       <ul class="list">
+        <li class="list-item">
+         <a class="list-item__link" href="http://www.kremlin.ru" target="_blank">
+          Президент Российской Федерации
+         </a>
+        </li>
+        <li class="list-item">
+         <a class="list-item__link" href="http://www.government.ru" target="_blank">
+          Правительство Российской Федерации
+         </a>
+        </li>
+        <li class="list-item">
+         <a class="list-item__link" href="http://www.minfin.ru" target="_blank">
+          Министерство финансов Российской Федерации
+         </a>
+        </li>
+        <li class="list-item">
+         <a class="list-item__link" href="http://www.fas.gov.ru" target="_blank">
+          Федеральная антимонопольная служба
+         </a>
+        </li>
+        <li class="list-item">
+         <a class="list-item__link" href="http://www.economy.gov.ru" target="_blank">
+          Министерство экономического развития Российской Федерации
+         </a>
+        </li>
+        <li class="list-item">
+         <a class="list-item__link" href="http://roskazna.ru" target="_blank">
+          Федеральное казначейство
+         </a>
+        </li>
+       </ul>
+      </nav>
+     </div>
+     <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+      <nav class="usefull-links">
+       <span class="list-title">
+        Техническая информация
+       </span>
+       <ul class="list">
+        <li class="list-item">
+         <a class="list-item__link" href="/epz/main/public/user-feedback.html">
+          Техническая поддержка
+         </a>
+        </li>
+        <li class="list-item">
+         <a class="list-item__link" data-modalup="" href="/epz/main/public/userFeedback/openFeedbackForm.html">
+          Ваши идеи по улучшению сайта
+         </a>
+        </li>
+       </ul>
+      </nav>
+      <figure class="btn-on-top">
+       <a class="btn-on-top__link">
+        <img alt="" class="btn-on-top__image" src="/epz/orderplan/img/icons/arrow-on-top.svg"/>
+       </a>
+      </figure>
+     </div>
+    </div>
+   </div>
+  </section>
+  <div class="clear">
+  </div>
+ </div>
+</footer>
+<script src="/epz/orderplan/js/ymaps/ymaps.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+ var isRegisteredUserObozApp = Boolean("");
+    var sessionMaxInactiveInterval = "180";
+    $(document).ready(function () {
+
+        /* fix console.log in IE */
+        if (!window.console) window.console = {};
+        if (!window.console.log) window.console.log = function () { };
+        /* fix console.log in IE */
+
+        var userRegionName = $.cookie("userRegionName"),
+                userRegionId = $.cookie("userRegionId"),
+                doNotShowKladrPopUp = $.cookie("doNotShowKladrPopUp"),
+                doNotUseRegionToFind = $.cookie("doNotUseRegionToFind"),
+                doNotAdviseToChangeLocation = $.cookie("doNotAdviseToChangeLocation"),
+                goodVisionLink = $(document).find('.goodVisionLink');
+
+        function detectGeolocation(callback) {
+            ymaps.ready(function () {
+                ymaps.geolocation.get({
+                    provider: 'yandex',
+                    autoReverseGeocode: true
+                }).then(function (result) {
+                    callback(result);
+                });
+            });
+        }
+
+        function getRegionIdByName(regionName, callback) {
+            $.get('/epz/nsi/kladr/regionIdByName.json', {regionName : regionName}).done(function(data) {
+                callback(data);
+            });
+        }
+
+        function getAdministrativeAreaName(responseFromYandexGeolocationService) {
+            return responseFromYandexGeolocationService.geoObjects.get(0).properties.get('metaDataProperty.GeocoderMetaData.AddressDetails.Country.AdministrativeArea.AdministrativeAreaName');
+        }
+
+        function getSubAdministrativeAreaName(responseFromYandexGeolocationService) {
+            return responseFromYandexGeolocationService.geoObjects.get(0).properties.get('metaDataProperty.GeocoderMetaData.AddressDetails.Country.AdministrativeArea.SubAdministrativeArea.SubAdministrativeAreaName');
+        }
+
+        goodVisionLink.click(function (e) {
+            e.preventDefault();
+            $.removeCookie('usePoorVisionOption', { path: '/'});
+            $.removeCookie('colorSpectrumForPoorVision', { path: '/'});
+            $.removeCookie('fontSizeForPoorVision', { path: '/'});
+            location.reload();
+        });
+
+        if (userRegionId != null && userRegionId != 0) {
+            setRegionNameHeader(userRegionName);
+            if(doNotUseRegionToFind != 'true' && doNotAdviseToChangeLocation != 'true') {
+                detectGeolocation(function(responseFromYandexGeolocationService) {
+                    var administrativeAreaName = getAdministrativeAreaName(responseFromYandexGeolocationService),
+                            subAdministrativeAreaName = getSubAdministrativeAreaName(responseFromYandexGeolocationService),
+                            preparedUserRegionName = null;
+
+                    if (findFederalRegionYandexAnswer(administrativeAreaName)) {
+                        userRegionName = subAdministrativeAreaName;
+                    } else {
+                        userRegionName = administrativeAreaName;
+                    }
+
+                    preparedUserRegionName = prepareYandexRegionName(userRegionName);
+
+                    if(preparedUserRegionName && preparedUserRegionName.trim()) {
+                        getRegionIdByName(preparedUserRegionName, function(data) {
+                            var regionId = data ? data.regionId : null;
+                            if(regionId && regionId != userRegionId) {
+                                $.cookie("possibleRegionIdChange", regionId, { path: '/epz', expires: 1 });
+                                $("#chooseRegion").click();
+                            }
+                        });
+                    }
+
+                });
+            }
+        } else {
+            setRegionNameHeader("Не выбран");
+
+            detectGeolocation(function(responseFromYandexGeolocationService) {
+                var administrativeAreaName = getAdministrativeAreaName(responseFromYandexGeolocationService),
+                        subAdministrativeAreaName = getSubAdministrativeAreaName(responseFromYandexGeolocationService);
+
+                if (findFederalRegionYandexAnswer(administrativeAreaName)) {
+                    userRegionName = subAdministrativeAreaName;
+                } else {
+                    userRegionName = administrativeAreaName;
+                }
+
+                $.cookie("userRegionName", prepareYandexRegionName(userRegionName), { path: '/epz', expires: 182 });
+                $.cookie("yandexRegionName", administrativeAreaName + ', ' + subAdministrativeAreaName, { path: '/epz', expires: 182 });
+
+                if (doNotShowKladrPopUp != 'true') {
+                    $("#chooseRegion").click();
+                }
+            });
+        }
+
+        $(".poorVisionLink").click(function(e) {
+            e.preventDefault();
+            $.cookie('usePoorVisionOption', 'true', {path: '/', expires: 365*100});
+            location.reload();
+        });
+    });
+
+    function setRegionNameHeader(regionName) {
+        $("#headerUserRegionName").text(regionName);
+    }
+
+    function prepareYandexRegionName(regionName) {
+        if (regionName === 'Москва и Московская область') {
+            return 'Московская';
+        }
+
+        if (regionName === 'Москва и область') {
+            return 'Московская';
+        }
+
+        if (regionName === 'Санкт-Петербург и Ленинградская область') {
+            return 'Ленинградская';
+        }
+
+        if (regionName === 'Санкт-Петербург и область') {
+            return 'Ленинградская';
+        }
+
+        var resultRegionName = null;
+        var stringToRemoveArray = [' автономный округ', ' автономная область', ' АО', ' область', ' край', 'Республика ', ' Республика', ' республика'];
+
+        for (var j = 0; j < stringToRemoveArray.length; j++) {
+            if (regionName.search(stringToRemoveArray[j]) > -1) {
+                resultRegionName = regionName.replace(stringToRemoveArray[j], '');
+
+                break;
+            } else {
+                resultRegionName = regionName;
+            }
+        }
+
+        return resultRegionName.split('-')[0];
+    }
+
+    function findFederalRegionYandexAnswer(yandexAnswer) {
+        var answerArray = yandexAnswer.split(' ');
+
+        for (var i = 0; i < answerArray.length; i++) {
+            if (answerArray[i] === 'округ') {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /*Отладочная информация - все регионы РФ из ответа Яндекса https://yandex.ru/yaca/geo.c2n */
+    /*var yandexRegionNameArray = ['Москва и область', 'Белгородская область', 'Брянская область', 'Владимирcкая область', 'Воронежcкая область', 'Ивановская область', 'Калужская область', 'Костромская область', 'Курская область',
+     'Липецкая область', 'Орловская область', 'Рязанская область', 'Смоленская область', 'Тамбовская область', 'Тверская область', 'Тульская область', 'Ярославская область',
+     'Санкт-Петербург и Ленинградская область', 'Архангельская область', 'Вологодская область', 'Калининградская область', 'Мурманская область',
+     'Новгородская область', 'Псковская область', 'Республика Коми', 'Республика Карелия', 'Ненецкий АО',
+     'Астраханская область', 'Волгоградская область', 'Краснодарский край', 'Республика Адыгея', 'Республика Калмыкия', 'Ростовская область',
+     'Кировская область', 'Республика Марий Эл', 'Нижегородская область', 'Оренбургская область', 'Пензенская область', 'Пермский край', 'Республика Башкортостан',
+     'Республика Мордовия', 'Татарстан', 'Самарская область', 'Саратовская область', 'Удмуртская республика', 'Ульяновская область', 'Чувашская республика',
+     'Курганская область', 'Свердловская область', 'Тюменская область', 'Ханты-Мансийский АО', 'Челябинская область', 'Ямало-Ненецкий АО',
+     'Алтайский край', 'Иркутская область', 'Кемеровская область', 'Красноярский край', 'Новосибирская область', 'Омская область',
+     'Республика Алтай', 'Республика Бурятия', 'Республика Тыва', 'Республика Хакасия', 'Томская область', 'Забайкальский край',
+     'Магаданская область', 'Камчатский край', 'Еврейская автономная область', 'Чукотский автономный округ', 'Хабаровский край', 'Приморский край', 'Амурская область', 'Республика Саха (Якутия)', 'Сахалинская область',
+     'Республика Дагестан', 'Республика Ингушетия', 'Республика Кабардино-Балкария', 'Республика Северная Осетия-Алания', 'Ставропольский край', 'Карачаево-Черкесская Республика', 'Чеченская Республика', 'Крым', 'Севастополь'];*/
+</script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+ (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter36706425 = new Ya.Metrika({
+                    id:36706425,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+
+    function yandexCounterHit(url) {
+        if (typeof(yaCounter36706425) != "undefined") {
+            yaCounter36706425.hit(url);
+        }
+    }
+
+    $(document).ready(function () {
+        $("a[target=_blank]:not([initialHref])").click(function (event) {
+            yandexCounterHit($(this).attr("href"));
+        });
+
+        $(document).ajaxSend(function (event, request, settings) {
+            yandexCounterHit(settings.url);
+        });
+    });
+</script>
+<noscript>
+ <div>
+  <img alt="" src="https://mc.yandex.ru/watch/36706425" style="position:absolute; left:-9999px;"/>
+ </div>
+</noscript>
+<!-- /Yandex.Metrika counter -->
+<script type="text/javascript">
+ if (window.epzAnalytics) window.epzAnalytics.track();
+$(document).ready(function () {
+        checkNotice();
+});
+</script>

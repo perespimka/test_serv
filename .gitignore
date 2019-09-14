@@ -4,3 +4,4 @@ __pycache__/
 Blog/
 manage.py
 migrations/
+media/pics/

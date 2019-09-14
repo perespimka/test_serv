@@ -4,6 +4,7 @@ from .forms import BPForm, CommentForm
 from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from .parser_gz import ikz_func
 
 def trueuser(request, user):
     if request.user != user:
@@ -63,3 +64,16 @@ def viewpost(request, post_id):
 
     context = {'post' : post, 'usercheck' : usercheck, 'comments' : comments, 'form' : form}
     return render(request, 'blogs/viewpost.html', context)
+
+def ikz_data(request):
+    if request.method != 'POST':
+        check = False
+        data_ikz =()
+    else:
+        ikz = request.POST['ikz']
+        data_ikz = ikz_func(ikz)
+        check = True
+
+
+    context = {'check' : check, 'data_ikz' : data_ikz}
+    return render(request, 'blogs/ikz_data.html', context)

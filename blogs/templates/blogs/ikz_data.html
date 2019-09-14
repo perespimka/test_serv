@@ -1,0 +1,26 @@
+{% extends "blogs/base.html" %}
+{% load bootstrap4 %}
+
+{% block header %}
+  <div>
+    <h3>Поиск по ИКЗ:</h3>
+  </div>
+{% endblock header %}
+
+{% block content %}
+  
+  <form action="{% url 'ikz_data' %}" method="POST" class="form" enctype='multipart/form-data'>
+    {% csrf_token %}
+    <p>Введите ИКЗ:</p>
+    <input type="text" name="ikz" size="36" class="form-control">
+  </form>
+  {% if check %}
+    {% if data_ikz %}
+      <p>ИКЗ: {{data_ikz.0}}</p>
+      <p>Заказчик: {{data_ikz.1}}</p>
+      <p>Объект закупки: {{data_ikz.2}}</p>
+    {% else %}
+      <p>Неверно введен идентификационный код закупки</p>
+    {% endif %}
+  {% endif %}
+{% endblock content %}
